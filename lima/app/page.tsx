@@ -1,7 +1,9 @@
 export default function Home() {
   return (
     <div>
-      <p>Welcome to Project Lima!</p>
+      <p className="text-teal-500 font-bold">
+        Welcome to Project Lima!
+      </p>
     </div>
   )
 }
