@@ -1,9 +1,9 @@
 import {
     ClerkLoaded,
     ClerkLoading,
+    SignInButton,
     SignedIn,
     SignedOut,
-    SignInButton,
     UserButton
 } from "@clerk/nextjs";
 import { Loader } from "lucide-react";
@@ -32,8 +32,6 @@ export const Header = () => {
                     <SignedOut>
                         <SignInButton
                             mode="modal"
-                            afterSignInUrl="/learn"
-                            afterSignUpUrl="/learn"
                         >
                             <Button size="lg" variant="ghost">
                                 Login
