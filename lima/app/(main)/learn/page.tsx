@@ -3,6 +3,8 @@ import { StickyWrapper } from "@/components/sticky-wrapper";
 import { Header } from "./header";
 import { UserProgress } from "@/components/user-progress";
 
+// Sidebar Icon Hex: #22d3ee
+
 const LearnPage = () => {
     return ( // Try and remove flex-row-reverse and flip sticky and feed wrapper's postion in the code
         <div className="flex flex-row-reverse gap-[48px] px-6">
