@@ -1,14 +1,33 @@
 "use client"
 
+import { useRouter } from "next/router";
+
 import { courses, userProgress } from "@/db/schema"
+
 import { Card } from "./card";
+import { useTransition } from "react";
 
 type Props = {
     courses: typeof courses.$inferSelect[];
-    activeCourseID?: typeof userProgress.$inferSelect.activeCourseId;
+    activeCourseId?: typeof userProgress.$inferSelect.activeCourseId;
 };
 
-export const List = ({ courses, activeCourseID }: Props) => {
+export const List = ({ courses, activeCourseId }: Props) => {
+    const router = useRouter();
+    const [pending, startTransition] = useTransition();
+
+    const onClick = (id: number) => {
+        if (pending) return;
+
+        if (id === activeCourseId) {
+            return router.push("/learn");
+        }
+
+        startTransition(() => {
+
+        });
+    };
+    
     return (
         <div className="pt-6 grid grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(210px,1fr))]">
             {courses.map((course) => (
@@ -19,7 +38,7 @@ export const List = ({ courses, activeCourseID }: Props) => {
                 imageSrc={course.imageSrc}
                 onClick={() => {}}
                 disabled={false}
-                active={course.id === activeCourseID}
+                active={course.id === activeCourseId}
                 />
             ))}
         </div>
