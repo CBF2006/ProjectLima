@@ -15,7 +15,7 @@ export const getUserProgress = cache(async () => {
     const data = await db.query.userProgress.findFirst({
         where: eq(userProgress.userId, userId),
         with: {
-            activeCourse: true
+            activeCourse: true,
         },
     });
 

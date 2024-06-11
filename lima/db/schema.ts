@@ -14,8 +14,9 @@ export const coursesRelations = relations(courses, ({ many }) => ({
 export const userProgress = pgTable("userProgress", {
      userId: text("user_id").primaryKey(),
      userName: text("user_name").notNull().default("User"),
-     userImageSource: text("user_image_src").notNull().default("/sana.svg"),
-     activeCourseId: integer("active_course_id").references(() => courses.id, { onDelete: "cascade"}),
+     userImageSrc: text("user_image_src").notNull().default("/sana.svg"),
+     activeCourseId: integer("active_course_id").references(() => courses.
+     id, { onDelete: "cascade" }),
      hearts: integer("hearts").notNull().default(5),
      points: integer("points").notNull().default(0),
 });

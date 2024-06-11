@@ -18,7 +18,7 @@ const LearnPage = async () => {
         userProgressData
     ]);
 
-    if (!userProgress || userProgress.
+    if (!userProgress || !userProgress.
         activeCourse) {
         redirect("/courses");
     }
