@@ -10,14 +10,29 @@ const db = drizzle(sql, { schema });
 
 const main = async () => {
     try {
-        console.log("seeding database");
+        console.log("Seeding Database...");
 
         await db.delete(schema.courses);
         await db.delete(schema.userProgress);
 
-        console.log("seeding Finished");
+await db.insert(schema.courses).values([
+    {
+        id: 1,
+        title: "Korean",
+        imageSrc: "/kr.svg",
+    },
+    {
+        id: 2,
+        title: "Japanese",
+        imageSrc: "/jp.svg",
+    },
+]);
+
+        console.log("Seeding Finished!");
     } catch (error) {
         console.error(error);
         throw new Error("Failed to seed the database");
     }
 };
+
+main();
