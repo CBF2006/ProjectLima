@@ -67,23 +67,31 @@ export const challengesRelations = relations(challenges, ({ one, many }) =>
     challengeProgress: many(challengeProgress),
 }));
 
-export const challengeOptions = pgTable("challengeOptions", {
+export const challengeOptions = pgTable("challenge_options", {
+    id: serial("id").primaryKey(),
+    userId: text("user_id"),
+    challengeId: integer("challenge_id").references(() => challenges.id, { 
+    onDelete: "cascade" }).notNull(),
+    text: text("text"),
+    correct: boolean("correct").notNull(),
+    imageSrc: text("image_src"),
+    audioSrc: text("audio_src"), // notNull() would require this field and break if not present
+});
+
+export const challengeOptionsRelations = relations(challengeOptions, ({ one }) =>
+    ({
+        challenge: one(challenges, {
+            fields: [challengeOptions.challengeId],
+            references: [challenges.id],
+    }),
+}));
+
+export const challengeProgress = pgTable("challenge_progress", {
     id: serial("id").primaryKey(),
     userId: text("user_id").notNull(), // TODO: Confirm this doesn't break
     challengeId: integer("challenge_id").references(() => challenges.id, { 
     onDelete: "cascade" }).notNull(),
     completed: boolean("completed").notNull().default(false),
-});
-
-export const challengeProgress = pgTable("challengeProgress", {
-    id: serial("id").primaryKey(),
-    userId: text("user_id"),
-    challengeId: integer("challenge_id").references(() => challenges.id, { 
-    onDelete: "cascade" }).notNull(),
-    text: text("text").notNull(),
-    correct: boolean("correct").notNull(),
-    imageSrc: text("image_src"),
-    audioSrc: text("audio_src"), // notNull() would require this field and break if not present
 });
 
 export const challengeProgressRelations = relations(challengeProgress, ({ one }) =>
@@ -94,15 +102,7 @@ export const challengeProgressRelations = relations(challengeProgress, ({ one })
     }),
 }));
 
-export const challengeOptionsRelations = relations(challengeOptions, ({ one }) =>
-    ({
-        challenge: one(challenges, {
-            fields: [challengeOptions.challengeId],
-            references: [challenges.id],
-    }),
-}));
-
-export const userProgress = pgTable("userProgress", {
+export const userProgress = pgTable("user_progress", {
      userId: text("user_id").primaryKey(),
      userName: text("user_name").notNull().default("User"),
      userImageSrc: text("user_image_src").notNull().default("/sana.svg"),

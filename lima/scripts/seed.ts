@@ -43,6 +43,60 @@ const main = async () => {
         }
     ]);
 
+    await db.insert(schema.lessons).values([
+        {
+            id: 1,
+            unitId: 1, // Unit 1: Learn Hangeul...
+            order: 1,
+            title: "Basic Vowels 1",
+        }, 
+    ]);
+
+    await db.insert(schema.challenges).values([
+        {
+            id: 1,
+            lessonId: 1, // Basic Vowels 1
+            type: "SELECT",
+            order: 1,
+            question: 'Which one of these is "아"?',
+        },
+    ]);
+
+    await db.insert(schema.challengeOptions).values([
+        {
+            id: 1,
+            challengeId: 1, // Which one of these is "아"?
+            imageSrc: "kr_a.svg",
+            correct: true,
+            text: "",
+            audioSrc: "kr_a.mp3",
+        },
+        {
+            id: 2,
+            challengeId: 1, // Which one of these is "아"?
+            imageSrc: "kr_i.svg",
+            correct: false,
+            text: "",
+            audioSrc: "kr_i.mp3",
+        },
+        {
+            id: 3,
+            challengeId: 1, // Which one of these is "아"?
+            imageSrc: "kr_o.svg",
+            correct: false,
+            text: "",
+            audioSrc: "kr_o.mp3",
+        },
+        {
+            id: 4,
+            challengeId: 1, // Which one of these is "아"?
+            imageSrc: "kr_u.svg",
+            correct: false,
+            text: "",
+            audioSrc: "kr_u.mp3",
+        },
+    ]);
+
             console.log("Seeding Finished!");
         } catch (error) {
             console.error(error);
