@@ -34,6 +34,8 @@ const main = async () => {
     ]);
 
     await db.insert(schema.units).values([
+        
+        // Korean
         {
             id: 1,
             courseId: 1, // Korean
@@ -41,9 +43,36 @@ const main = async () => {
             description: "Learn Basic Hangeul",
             order: 1,
         },
+        {
+            id: 2,
+            courseId: 1, // Korean
+            title: "Unit 2",
+            description: "Learn Complex Hangeul",
+            order: 2,
+        },
+        {
+            id: 3,
+            courseId: 1, // Korean
+            title: "Unit 3",
+            description: "Learn Basic Grammar and Phrases",
+            order: 3,
+        },
+
+        // Japanese
+        {
+            id: 4,
+            courseId: 2, // Japanese
+            title: "Unit 1",
+            description: "Learn Basic Hiragana",
+            order: 1,
+        },
     ]);
 
     await db.insert(schema.lessons).values([
+        
+        // Korean
+        // Unit 1
+
         {
             id: 1,
             unitId: 1, // Unit 1: Learn Hangeul...
@@ -74,6 +103,105 @@ const main = async () => {
             order: 5,
             title: "Basic Hanguel",
         }, 
+
+        // Unit 2
+
+        {
+            id: 6,
+            unitId: 2, // Unit 2: Learn Hangeul...
+            order: 1,
+            title: "Vowel Combinations 1",
+        }, 
+        {
+            id: 7,
+            unitId: 2, // Unit 2: Learn Hangeul...
+            order: 2,
+            title: "Double Consonants",
+        }, 
+        {
+            id: 8,
+            unitId: 2, // Unit 2: Learn Hangeul...
+            order: 3,
+            title: "Basic Vowels 2",
+        }, 
+        {
+            id: 9,
+            unitId: 2, // Unit 2: Learn Hangeul...
+            order: 4,
+            title: "Final Consonant 1",
+        }, 
+        {
+            id: 10,
+            unitId: 2, // Unit 2: Learn Hangeul...
+            order: 5,
+            title: "Final Consonant 2",
+        }, 
+
+        // Unit 3
+
+        {
+            id: 11,
+            unitId: 3, // Unit 3
+            order: 1,
+            title: "Greetings",
+        },
+        {
+            id: 12,
+            unitId: 3, // Unit 3
+            order: 2,
+            title: "Pronouns",
+        },
+        {
+            id: 13,
+            unitId: 3, // Unit 3
+            order: 3,
+            title: "Verbs 1",
+        },
+        {
+            id: 14,
+            unitId: 3, // Unit 3
+            order: 4,
+            title: "Nouns 1",
+        },
+        {
+            id: 15,
+            unitId: 3, // Unit 3
+            order: 5,
+            title: "Adverbs 1",
+        },
+
+        // Japanese
+
+        {
+            id: 16,
+            unitId: 4, // Japanese Unit 1
+            order: 1,
+            title: "Hirangana 1",
+        },
+        {
+            id: 17,
+            unitId: 4, // Japanese Unit 1
+            order: 2,
+            title: "Hirangana 2",
+        },
+        {
+            id: 18,
+            unitId: 4, // Japanese Unit 1
+            order: 3,
+            title: "Hirangana 3",
+        },
+        {
+            id: 19,
+            unitId: 4, // Japanese Unit 1
+            order: 4,
+            title: "Hirangana 4",
+        },
+        {
+            id: 20,
+            unitId: 4, // Japanese Unit 1
+            order: 5,
+            title: "Hirangana 5",
+        },
     ]);
 
     await db.insert(schema.challenges).values([
