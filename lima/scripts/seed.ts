@@ -38,9 +38,9 @@ const main = async () => {
             id: 1,
             courseId: 1, // Korean
             title: "Unit 1",
-            description: "Learn Hangeul and Pronounciation",
+            description: "Learn Basic Hangeul",
             order: 1,
-        }
+        },
     ]);
 
     await db.insert(schema.lessons).values([
@@ -49,6 +49,30 @@ const main = async () => {
             unitId: 1, // Unit 1: Learn Hangeul...
             order: 1,
             title: "Basic Vowels 1",
+        }, 
+        {
+            id: 2,
+            unitId: 1, // Unit 1: Learn Hangeul...
+            order: 2,
+            title: "Basic Consonants 1",
+        }, 
+        {
+            id: 3,
+            unitId: 1, // Unit 1: Learn Hangeul...
+            order: 3,
+            title: "Basic Vowels 2",
+        }, 
+        {
+            id: 4,
+            unitId: 1, // Unit 1: Learn Hangeul...
+            order: 4,
+            title: "Basic Consonants 2",
+        }, 
+        {
+            id: 5,
+            unitId: 1, // Unit 1: Learn Hangeul...
+            order: 5,
+            title: "Basic Hanguel",
         }, 
     ]);
 
