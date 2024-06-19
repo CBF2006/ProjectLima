@@ -1,7 +1,10 @@
 "use client";
 
+import { toast } from "sonner";
 import { useState, useTransition } from "react";
+import { useAudio } from "react-use";
 
+import { reduceHearts } from "@/actions/user-progress";
 import { challengeOptions, challenges } from "@/db/schema";
 import { upsertChallengeProgress } from "@/actions/challenge-progress";
 
@@ -28,6 +31,16 @@ export const Quiz = ({
     initialLessonChallenges,
     userSubscription,
  }: Props) => {
+    const [
+        correctAudio,
+        _c,
+        correctControls,
+    ] = useAudio({ src: "/correct.mp3" });
+    const [
+        incorrectAudio,
+        _i,
+        incorrectControls,
+    ] = useAudio({ src: "/incorrect.mp3" });
     const [pending, startTransition] = useTransition();
 
     const [hearts, setHearts] = useState(initialHearts);
@@ -86,6 +99,7 @@ export const Quiz = ({
                             return;
                         }
 
+                        correctControls.play();
                         setStatus("correct");
                         setPercentage((prev) => prev + 100 / challenges.length);
 
@@ -94,10 +108,26 @@ export const Quiz = ({
                             setHearts((prev) => Math.min(prev + 1, 5));
                         }
                     })
-                    .catch(() => )
+                    .catch(() => toast.error("Something went wrong. Please try again."))
             })
         } else {
-            console.error("Incorrect option!");
+            startTransition(() => {
+                reduceHearts(challenge.id)
+                    .then((response) => {
+                        if (response?.error === "hearts") {
+                            console.error("Missing hearts");
+                            return;
+                        }
+
+                        incorrectControls.play();
+                        setStatus("wrong");
+
+                        if (!response?.error) {
+                            setHearts((prev) => Math.max(prev - 1, 0));
+                        }
+                    })
+                    .catch(() => toast.error("Something went wrong. Please try again."))
+            })
         }
     };
 
@@ -107,6 +137,8 @@ export const Quiz = ({
 
     return (
         <>
+            {incorrectAudio}
+            {correctAudio}
             <Header 
                 hearts={hearts}
                 percentage={percentage}
@@ -127,7 +159,7 @@ export const Quiz = ({
                                 onSelect={onSelect}
                                 status={status}
                                 selectedOption={selectedOption}
-                                disabled={false}
+                                disabled={pending}
                                 type={challenge.type}
                             />
                         </div>
@@ -135,7 +167,7 @@ export const Quiz = ({
                 </div>
             </div>
             <Footer 
-                disabled={!selectedOption}
+                disabled={pending || !selectedOption}
                 status={status}
                 onCheck={onContinue}
             />
