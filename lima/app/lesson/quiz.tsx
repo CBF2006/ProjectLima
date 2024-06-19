@@ -12,6 +12,8 @@ import { Header } from "./header";
 import { Challenge } from "./challenge";
 import { QuestionBubble } from "./question.bubble";
 import { Footer } from "./footer";
+import Image from "next/image";
+import { ResultCard } from "./result-card";
 
 type Props = {
     initialPercentage: number;
@@ -130,6 +132,43 @@ export const Quiz = ({
             })
         }
     };
+
+    // TODO: Remove True
+    if (true || !challenge) {
+        return (
+            <>
+                <div className="flex flex-col gap-y-4 lg:gap-y-8 max-w-lg mx-auto text-center items-center justify-center h-full">
+                    <Image 
+                        src="/finish.svg"
+                        alt="Finish"
+                        className="hidden lg:block"
+                        height={100}
+                        width={100}
+                    />
+                    <Image 
+                        src="/finish.svg"
+                        alt="Finish"
+                        className="block lg:hidden"
+                        height={50}
+                        width={50}
+                    />
+                    <h1 className="text-xl lg:text-3xl font-bold text-neutral-700">
+                        Great job! <br /> You've completed the lesson.
+                    </h1>
+                    <div className="flex items-center fap-x-4 w-full">
+                        <ResultCard 
+                            variant="points"
+                            value={challenges.length * 10} // 10 is the # of points per challenge, could be set to a variable for harder questions?
+                        />
+                        <ResultCard 
+                            variant="hearts"
+                            value={hearts}
+                        />
+                    </div>
+                </div>
+            </>
+        )
+    }
 
     const title = challenge.type === "ASSIST" // Will need to be modified once you add other question types to a if-then-else statement
     ? "Select the correct meaning"

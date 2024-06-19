@@ -73,18 +73,34 @@ const main = async () => {
             { challengeId: 1, imageSrc: "kr_i.svg", correct: false, text: "", audioSrc: "kr_i.mp3" },
             { challengeId: 1, imageSrc: "kr_o.svg", correct: false, text: "", audioSrc: "kr_o.mp3" },
             { challengeId: 1, imageSrc: "kr_u.svg", correct: false, text: "", audioSrc: "kr_u.mp3" },
+        ]);
+
+        await db.insert(schema.challengeOptions).values([
             { challengeId: 2, correct: false, text: "아", audioSrc: "kr_a.mp3" },
             { challengeId: 2, correct: true, text: "이", audioSrc: "kr_i.mp3" },
             { challengeId: 2, correct: false, text: "오", audioSrc: "kr_o.mp3" },
             { challengeId: 2, correct: false, text: "우", audioSrc: "kr_u.mp3" },
+        ]);
+        
+        await db.insert(schema.challengeOptions).values([
             { challengeId: 3, imageSrc: "kr_a.svg", correct: false, text: "", audioSrc: "kr_a.mp3" },
             { challengeId: 3, imageSrc: "kr_i.svg", correct: false, text: "", audioSrc: "kr_i.mp3" },
             { challengeId: 3, imageSrc: "kr_o.svg", correct: false, text: "", audioSrc: "kr_o.mp3" },
             { challengeId: 3, imageSrc: "kr_u.svg", correct: true, text: "", audioSrc: "kr_u.mp3" },
+        ]);
+
+        await db.insert(schema.challengeOptions).values([
             { challengeId: 4, correct: false, text: "아", audioSrc: "kr_a.mp3" },
             { challengeId: 4, correct: false, text: "이", audioSrc: "kr_i.mp3" },
             { challengeId: 4, correct: true, text: "오", audioSrc: "kr_o.mp3" },
             { challengeId: 4, correct: false, text: "우", audioSrc: "kr_u.mp3" },
+        ]);
+
+        await db.insert(schema.challenges).values([ // Basic Consonants 1
+            { id: 5, lessonId: 2, type: "SELECT", order: 1, question: 'Which one of these is "아"?' },
+            { id: 6, lessonId: 2, type: "ASSIST", order: 2, question: '"이"' },
+            { id: 7, lessonId: 2, type: "SELECT", order: 3, question: 'Which one of these is "우"?' },
+            { id: 8, lessonId: 2, type: "ASSIST", order: 4, question: '"오"' },
         ]);
 
         console.log("Seeding Finished!");
