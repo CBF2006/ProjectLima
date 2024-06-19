@@ -7,6 +7,7 @@ import { challengeOptions, challenges } from "@/db/schema";
 import { Header } from "./header";
 import { Challenge } from "./challenge";
 import { QuestionBubble } from "./question.bubble";
+import { Footer } from "./footer";
 
 type Props = {
     initialPercentage: number;
@@ -33,10 +34,52 @@ export const Quiz = ({
         const uncompletedIndex = challenges.findIndex((challenge) => !challenge.
         completed);
         return uncompletedIndex === -1 ? 0 : uncompletedIndex;
-    })
+    });
+
+    const [selectedOption, setSelectedOption] = useState<number>();
+    const [status, setStatus] = useState<"correct" | "wrong" | "none">("none"); // ("none") is the DEFAULT STATUS
 
     const challenge = challenges[activeIndex];
     const options = challenge?.challengeOptions ?? [];
+
+    const onNext = () => {
+        setActiveIndex((current) => current + 1);
+    };
+
+    const onSelect = (id: number) => {
+        if (status !== "none") return; // Status "none": haven't submitted their answer
+
+        setSelectedOption(id)
+    }
+
+    const onContinue = () => {
+        if (!selectedOption) return;
+
+        if (status === "wrong") {
+            setStatus("none");
+            setSelectedOption(undefined);
+            return;
+        }
+
+        if (status === "correct") {
+            onNext();
+            setStatus("none");
+            setSelectedOption(undefined);
+            return;
+        }
+
+        const correctOption = options.find((option) => option.correct);
+
+        if (!correctOption) {
+            return;
+        }
+
+        if (correctOption && correctOption.id === selectedOption) {
+            console.log("Correct option!");
+        } else {
+            console.error("Incorrect option!");
+        }
+    };
 
     const title = challenge.type === "ASSIST" // Will need to be modified once you add other question types to a if-then-else statement
     ? "Select the correct meaning"
@@ -61,9 +104,9 @@ export const Quiz = ({
                             )}
                             <Challenge 
                                 options={options}
-                                onSelect={() => {}}
-                                status="none"
-                                selectedOption={undefined}
+                                onSelect={onSelect}
+                                status={status}
+                                selectedOption={selectedOption}
                                 disabled={false}
                                 type={challenge.type}
                             />
@@ -71,6 +114,11 @@ export const Quiz = ({
                     </div>
                 </div>
             </div>
+            <Footer 
+                disabled={!selectedOption}
+                status={status}
+                onCheck={onContinue}
+            />
         </>
     );
  };
