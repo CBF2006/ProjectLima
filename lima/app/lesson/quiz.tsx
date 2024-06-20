@@ -250,3 +250,5 @@ export const Quiz = ({
  // audioSrc and imageSrc are not loading/playing/displaying on practice lessons!
  // Yeah and the end screen modal didn't play...
  // HOWEVER the correct/wrong sounds DO play
+
+ // Need to somehow create a way to automatically add hearts after x amount of time. Like what if someone loses all their hearts on the first lesson?
