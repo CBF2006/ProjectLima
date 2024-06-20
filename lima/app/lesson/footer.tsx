@@ -8,7 +8,7 @@ type Props = {
     onCheck: () => void;
     status: "correct" | "wrong" | "none" | "completed";
     disabled?: boolean;
-    lessonId?: boolean;
+    lessonId?: number;
 };
 
 export const Footer = ({
@@ -43,7 +43,7 @@ export const Footer = ({
                     <Button
                         variant="default"
                         size={isMobile ? "sm" : "lg"}
-                        onClick={() => window.location.href = `/lesson${lessonId}`}
+                        onClick={() => window.location.href = `/lesson${lessonId}`} // You can maybe try router.refresh? Idk if it works. It will reload the whole page completely
                     >
                         Practice again
                     </Button>

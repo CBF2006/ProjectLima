@@ -1,8 +1,11 @@
 "use client";
 
 import { toast } from "sonner";
+import Image from "next/image";
+import Confetti from "react-confetti";
+import { useAudio, useWindowSize } from "react-use";
+import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { useAudio } from "react-use";
 
 import { reduceHearts } from "@/actions/user-progress";
 import { challengeOptions, challenges } from "@/db/schema";
@@ -12,7 +15,6 @@ import { Header } from "./header";
 import { Challenge } from "./challenge";
 import { QuestionBubble } from "./question.bubble";
 import { Footer } from "./footer";
-import Image from "next/image";
 import { ResultCard } from "./result-card";
 
 type Props = {
@@ -33,6 +35,11 @@ export const Quiz = ({
     initialLessonChallenges,
     userSubscription,
  }: Props) => {
+    const { width, height } = useWindowSize();
+    
+    const router = useRouter();
+
+    const [finishAudio] = useAudio({ src: "finish.mp3", autoPlay: true});
     const [
         correctAudio,
         _c,
@@ -45,6 +52,7 @@ export const Quiz = ({
     ] = useAudio({ src: "/incorrect.mp3" });
     const [pending, startTransition] = useTransition();
 
+    const [lessonId] = useState(initialLessonId);
     const [hearts, setHearts] = useState(initialHearts);
     const [percentage, setPercentage] = useState(initialPercentage);
     const [challenges] = useState(initialLessonChallenges);
@@ -133,10 +141,17 @@ export const Quiz = ({
         }
     };
 
-    // TODO: Remove True
-    if (true || !challenge) {
+    if (!challenge) {
         return (
             <>
+                {finishAudio}
+                <Confetti
+                    width={width}
+                    height={height}
+                    recycle={false}
+                    numberOfPieces={500}
+                    tweenDuration={10000} // Will not take up the whole screen in development. It will be fine during deployment
+                />
                 <div className="flex flex-col gap-y-4 lg:gap-y-8 max-w-lg mx-auto text-center items-center justify-center h-full">
                     <Image 
                         src="/finish.svg"
@@ -155,7 +170,7 @@ export const Quiz = ({
                     <h1 className="text-xl lg:text-3xl font-bold text-neutral-700">
                         Great job! <br /> You've completed the lesson.
                     </h1>
-                    <div className="flex items-center fap-x-4 w-full">
+                    <div className="flex items-center gap-x-4 w-full">
                         <ResultCard 
                             variant="points"
                             value={challenges.length * 10} // 10 is the # of points per challenge, could be set to a variable for harder questions?
@@ -166,6 +181,11 @@ export const Quiz = ({
                         />
                     </div>
                 </div>
+                <Footer 
+                    lessonId={lessonId}
+                    status="completed"
+                    onCheck={() => router.push("/learn")}
+                />
             </>
         )
     }
