@@ -70,7 +70,7 @@ export const ExitModal = () => {
                 </DialogFooter>
             </DialogContent>
         </Dialog>
-    )
+    );
 };
 
 // If "Wait, don't go!" breaks, use &apos; for apostrophe
