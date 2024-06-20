@@ -5,7 +5,7 @@ import { getLesson, getUserProgress } from "@/db/queries";
 import { Quiz } from "./quiz";
 
 const LessonPage = async () => {
-    const LessonData = getLesson();
+    const lessonData = getLesson();
     const userProgressData = getUserProgress();
 
 
@@ -13,7 +13,7 @@ const LessonPage = async () => {
         lesson,
         userProgress,
     ] = await Promise.all([
-        LessonData,
+        lessonData,
         userProgressData
     ])
 

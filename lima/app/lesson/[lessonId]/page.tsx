@@ -13,7 +13,7 @@ type Props = {
 const LessonIdPage = async ({
     params,
 }: Props) => {
-    const LessonData = getLesson(params.lessonId);
+    const lessonData = getLesson(params.lessonId);
     const userProgressData = getUserProgress();
 
 
@@ -21,7 +21,7 @@ const LessonIdPage = async ({
         lesson,
         userProgress,
     ] = await Promise.all([
-        LessonData,
+        lessonData,
         userProgressData
     ])
 
