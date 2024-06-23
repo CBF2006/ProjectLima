@@ -47,7 +47,7 @@ export const HeartsModal = () => {
                         You've run out of hearts!
                     </DialogTitle>
                     <DialogDescription className="text-center text-base"> 
-                        Get Pro for unlimited hearts, or purchase them in the store
+                        Get Pro for unlimited hearts, purchase them in the store, or do practice lessons.
                     </DialogDescription>
                 </DialogHeader>
                 <DialogFooter className="mb-4">

@@ -69,31 +69,31 @@ const main = async () => {
         ]);
 
         await db.insert(schema.challengeOptions).values([
-            { challengeId: 1, imageSrc: "kr_a.svg", correct: true, text: "", audioSrc: "kr_a.mp3" },
-            { challengeId: 1, imageSrc: "kr_i.svg", correct: false, text: "", audioSrc: "kr_i.mp3" },
-            { challengeId: 1, imageSrc: "kr_o.svg", correct: false, text: "", audioSrc: "kr_o.mp3" },
-            { challengeId: 1, imageSrc: "kr_u.svg", correct: false, text: "", audioSrc: "kr_u.mp3" },
+            { challengeId: 1, imageSrc: "/kr_a.svg", correct: true, text: "", audioSrc: "/kr_a.mp3" },
+            { challengeId: 1, imageSrc: "/kr_i.svg", correct: false, text: "", audioSrc: "/kr_i.mp3" },
+            { challengeId: 1, imageSrc: "/kr_o.svg", correct: false, text: "", audioSrc: "/kr_o.mp3" },
+            { challengeId: 1, imageSrc: "/kr_u.svg", correct: false, text: "", audioSrc: "/kr_u.mp3" },
         ]);
 
         await db.insert(schema.challengeOptions).values([
-            { challengeId: 2, correct: false, text: "아", audioSrc: "kr_a.mp3" },
-            { challengeId: 2, correct: true, text: "이", audioSrc: "kr_i.mp3" },
-            { challengeId: 2, correct: false, text: "오", audioSrc: "kr_o.mp3" },
-            { challengeId: 2, correct: false, text: "우", audioSrc: "kr_u.mp3" },
+            { challengeId: 2, correct: false, text: "아", audioSrc: "/kr_a.mp3" },
+            { challengeId: 2, correct: true, text: "이", audioSrc: "/kr_i.mp3" },
+            { challengeId: 2, correct: false, text: "오", audioSrc: "/kr_o.mp3" },
+            { challengeId: 2, correct: false, text: "우", audioSrc: "/kr_u.mp3" },
         ]);
         
         await db.insert(schema.challengeOptions).values([
-            { challengeId: 3, imageSrc: "kr_a.svg", correct: false, text: "", audioSrc: "kr_a.mp3" },
-            { challengeId: 3, imageSrc: "kr_i.svg", correct: false, text: "", audioSrc: "kr_i.mp3" },
-            { challengeId: 3, imageSrc: "kr_o.svg", correct: false, text: "", audioSrc: "kr_o.mp3" },
-            { challengeId: 3, imageSrc: "kr_u.svg", correct: true, text: "", audioSrc: "kr_u.mp3" },
+            { challengeId: 3, imageSrc: "/kr_a.svg", correct: false, text: "", audioSrc: "/kr_a.mp3" },
+            { challengeId: 3, imageSrc: "/kr_i.svg", correct: false, text: "", audioSrc: "/kr_i.mp3" },
+            { challengeId: 3, imageSrc: "/kr_o.svg", correct: false, text: "", audioSrc: "/kr_o.mp3" },
+            { challengeId: 3, imageSrc: "/kr_u.svg", correct: true, text: "", audioSrc: "/kr_u.mp3" },
         ]);
 
         await db.insert(schema.challengeOptions).values([
-            { challengeId: 4, correct: false, text: "아", audioSrc: "kr_a.mp3" },
-            { challengeId: 4, correct: false, text: "이", audioSrc: "kr_i.mp3" },
-            { challengeId: 4, correct: true, text: "오", audioSrc: "kr_o.mp3" },
-            { challengeId: 4, correct: false, text: "우", audioSrc: "kr_u.mp3" },
+            { challengeId: 4, correct: false, text: "아", audioSrc: "/kr_a.mp3" },
+            { challengeId: 4, correct: false, text: "이", audioSrc: "/kr_i.mp3" },
+            { challengeId: 4, correct: true, text: "오", audioSrc: "/kr_o.mp3" },
+            { challengeId: 4, correct: false, text: "우", audioSrc: "/kr_u.mp3" },
         ]);
 
         await db.insert(schema.challenges).values([ // Basic Consonants 1
@@ -111,3 +111,5 @@ const main = async () => {
 };
 
 main();
+
+// MAKE SURE TO INCLUDE A / WITH ANY SOURCE. When you don't, it will only work with the initial lesson, not the practice

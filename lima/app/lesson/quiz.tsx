@@ -50,7 +50,7 @@ export const Quiz = ({
     
     const router = useRouter();
 
-    const [finishAudio] = useAudio({ src: "finish.mp3", autoPlay: true});
+    const [finishAudio] = useAudio({ src: "/finish.mp3", autoPlay: true});
     const [
         correctAudio,
         _c,
@@ -247,7 +247,7 @@ export const Quiz = ({
     );
  };
 
- // audioSrc and imageSrc are not loading/playing/displaying on practice lessons!
+ // audioSrc and imageSrc are not loading/playing/displaying on practice lessons! Specifically the correct/incorrect will, but the end screen won't 
  // Yeah and the end screen modal didn't play...
  // HOWEVER the correct/wrong sounds DO play
 
