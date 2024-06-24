@@ -41,11 +41,9 @@ const LessonIdPage = async ({
             initialLessonChallenges={lesson.challenges}
             initialHearts={userProgress.hearts}
             initialPercentage={initialPercentage}
-            userSubscription={!!userSubscription}
+            userSubscription={userSubscription}
         />
     );
 };
 
 export default LessonIdPage;
-
-// Still showing 5 hearts? Do I want this?

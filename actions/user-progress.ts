@@ -6,11 +6,9 @@ import { revalidatePath } from "next/cache";
 import { auth, currentUser } from "@clerk/nextjs/server";
 
 import db from "@/db/drizzle";
+import { POINTS_TO_REFILL } from "@/constants";
 import { getCourseById, getUserProgress, getUserSubscription } from "@/db/queries";
 import { challengeProgress, challenges, userProgress } from "@/db/schema";
-
-// TODO: Move alongside Item component into a common file
-const POINTS_TO_REFILL = 10;
 
 export const upsertUserProgress = async (courseId: number) => {
     const { userId } = await auth();
