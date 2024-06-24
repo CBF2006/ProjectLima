@@ -5,8 +5,8 @@ import { getIsAdmin } from "@/lib/admin";
 
 const App = dynamic(() => import("./app"), { ssr: false });
 
-const AdminPage = async () => {
-    const isAdmin = await getIsAdmin();
+const AdminPage = () => {
+    const isAdmin = getIsAdmin();
 
     if (!isAdmin) {
         redirect("/");
