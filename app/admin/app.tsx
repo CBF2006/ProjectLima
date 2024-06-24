@@ -15,6 +15,10 @@ import { LessonList } from "./lesson/list";
 import { LessonCreate } from "./lesson/create";
 import { LessonEdit } from "./lesson/edit";
 
+import { ChallengeList } from "./challenge/list";
+import { ChallengeCreate } from "./challenge/create";
+import { ChallengeEdit } from "./challenge/edit";
+
 const dataProvider = simpleRestProvider("/api") as DataProvider; // Will break unless you put "as DataProvider" https://github.com/marmelab/react-admin/issues/5476
 
 export const App = () => {
@@ -40,6 +44,13 @@ export const App = () => {
                 create={LessonCreate}
                 edit={LessonEdit}
                 recordRepresentation="title"
+            />
+            <Resource
+                name="challenges"
+                list={ChallengeList}
+                create={ChallengeCreate}
+                edit={ChallengeEdit}
+                recordRepresentation="question"
             />
         </Admin>
     )
