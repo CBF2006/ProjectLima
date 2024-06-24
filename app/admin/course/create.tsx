@@ -8,5 +8,7 @@ export const CourseCreate = () => {
                 <TextInput source="imageSrc" validate={[required()]} label="Image" />
             </SimpleForm>
         </Create>
-    )
+    );
 };
+
+// TextField is ONLY for REPRESENTATION. Use TextInput for inputting text
