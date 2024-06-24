@@ -64,7 +64,7 @@ export const App = () => {
                 recordRepresentation="text"
             />
         </Admin>
-    )
+    );
 };
 
 export default App;
