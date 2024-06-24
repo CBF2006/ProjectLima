@@ -3,7 +3,7 @@ const nextConfig = {
     async headers() {
         return [
             {
-                soruce: "/api/(.*)",
+                source: "/api/(.*)",
                 headers: [
                     {
                         key: "Access-Control-Allow-Origin",
