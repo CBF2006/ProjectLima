@@ -17,7 +17,7 @@ export const GET = async (
     const body = await req.json();
     const data = await db.update(courses).set({
         ...body
-    }).where(eq(courses.id, params.courseId)).returning();
+    }).where(eq(courses.id, params.courseId));
 
     return NextResponse.json(data);
 };
