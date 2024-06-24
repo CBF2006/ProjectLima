@@ -77,6 +77,7 @@ const main = async () => {
             { id: 13, lessonId: 16, type: "SELECT", order: 3, question: 'Which one of these is "え"?' },
             { id: 14, lessonId: 16, type: "SELECT", order: 4, question: 'Which one of these is "お"?' },
             { id: 15, lessonId: 16, type: "SELECT", order: 5, question: 'Which one of these is "い"?' },
+            { id: 16, lessonId: 16, type: "SELECT", order: 6, question: 'Which one of these is "the home"?' },
         ]);
 
         await db.insert(schema.challengeOptions).values([ // KR - Lesson 1
@@ -108,6 +109,37 @@ const main = async () => {
             { challengeId: 6, imageSrc: "/baby.svg", correct: false, text: "아기", audioSrc: "/kr_baby.mp3" },
             { challengeId: 6, imageSrc: "/milk.svg", correct: false, text: "우유", audioSrc: "/kr_milk.mp3" },
             { challengeId: 6, imageSrc: "/child.svg", correct: true, text: "아이", audioSrc: "/kr_child.mp3" },
+        ]);
+
+        await db.insert(schema.challengeOptions).values([ // JP - Lesson 1
+            { challengeId: 11, imageSrc: "/jp_a.svg", correct: true, text: "", audioSrc: "/jp_a.mp3" },
+            { challengeId: 11, imageSrc: "/jp_i.svg", correct: false, text: "", audioSrc: "/jp_i.mp3" },
+            { challengeId: 11, imageSrc: "/jp_o.svg", correct: false, text: "", audioSrc: "/jp_o.mp3" },
+            { challengeId: 11, imageSrc: "/jp_u.svg", correct: false, text: "", audioSrc: "/jp_u.mp3" },
+
+            { challengeId: 12, imageSrc: "/jp_e.svg", correct: false, text: "", audioSrc: "/jp_e.mp3" },
+            { challengeId: 12, imageSrc: "/jp_u.svg", correct: true, text: "", audioSrc: "/jp_u.mp3" },
+            { challengeId: 12, imageSrc: "/jp_i.svg", correct: false, text: "", audioSrc: "/jp_i.mp3" },
+            { challengeId: 12, imageSrc: "/jp_a.svg", correct: false, text: "", audioSrc: "/jp_a.mp3" },
+
+            { challengeId: 13, imageSrc: "/jp_e.svg", correct: true, text: "", audioSrc: "/jp_e.mp3" },
+            { challengeId: 13, imageSrc: "/jp_i.svg", correct: false, text: "", audioSrc: "/jp_i.mp3" },
+            { challengeId: 13, imageSrc: "/jp_u.svg", correct: false, text: "", audioSrc: "/jp_u.mp3" },
+            { challengeId: 13, imageSrc: "/jp_o.svg", correct: false, text: "", audioSrc: "/jp_o.mp3" },
+
+            { challengeId: 14, imageSrc: "/jp_e.svg", correct: false, text: "", audioSrc: "/jp_e.mp3" },
+            { challengeId: 14, imageSrc: "/jp_u.svg", correct: false, text: "", audioSrc: "/jp_u.mp3" },
+            { challengeId: 14, imageSrc: "/jp_o.svg", correct: true, text: "", audioSrc: "/jp_o.mp3" },
+            { challengeId: 14, imageSrc: "/jp_a.svg", correct: false, text: "", audioSrc: "/jp_a.mp3" },
+
+            { challengeId: 15, imageSrc: "/jp_a.svg", correct: false, text: "", audioSrc: "/jp_a.mp3" },
+            { challengeId: 15, imageSrc: "/jp_o.svg", correct: false, text: "", audioSrc: "/jp_o.mp3" },
+            { challengeId: 15, imageSrc: "/jp_e.svg", correct: false, text: "", audioSrc: "/jp_e.mp3" },
+            { challengeId: 15, imageSrc: "/jp_i.svg", correct: true, text: "", audioSrc: "/jp_i.mp3" },
+
+            { challengeId: 16, imageSrc: "/house.svg", correct: true, text: "家", audioSrc: "/jp_house.mp3" },
+            { challengeId: 16, imageSrc: "/book.svg", correct: false, text: "本", audioSrc: "/jp_book.mp3" },
+            { challengeId: 16, imageSrc: "/car.svg", correct: false, text: "車", audioSrc: "/jp_car.mp3" },
         ]);
 
         await db.insert(schema.challenges).values([ // KR - Lesson 2
