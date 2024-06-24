@@ -36,7 +36,7 @@ export const PUT = async (
         ...body,
     }).where(eq(courses.id, params.courseId)).returning();
 
-    return NextResponse.json(data);
+    return NextResponse.json(data[0]);
 };
 
 export const DELETE = async (
@@ -52,7 +52,7 @@ export const DELETE = async (
     const data = await db.delete(courses)
         .where(eq(courses.id, params.courseId)).returning();
 
-    return NextResponse.json(data);
+    return NextResponse.json(data[0]);
 };
 
 // You should do a authorization check in everywhere you access it just to make sure security is tight
