@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 import db from "@/db/drizzle";
-import { courses } from "@/db/schema";
+import { units } from "@/db/schema";
 import { getIsAdmin } from "@/lib/admin";
 
 export const GET = async () => {
@@ -11,7 +11,7 @@ export const GET = async () => {
         return new NextResponse("Unauthorized", { status: 403 }); // 403: Forbidden https://stackoverflow.com/questions/3297048/403-forbidden-vs-401-unauthorized-http-responses | Only admins can fetch data because of this clause
     }
 
-    const data = await db.query.courses.findMany();
+    const data = await db.query.units.findMany();
 
     return NextResponse.json(data);
 };
@@ -25,7 +25,7 @@ export const POST = async (req: Request) => {
 
     const body = await req.json();
 
-    const data = await db.insert(courses).values({
+    const data = await db.insert(units).values({
         ...body,
     }).returning();
 

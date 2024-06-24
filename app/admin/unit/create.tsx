@@ -1,6 +1,6 @@
-import { SimpleForm, Create, TextInput, required } from "react-admin";
+import { SimpleForm, Create, TextInput, required, ReferenceInput, NumberInput } from "react-admin";
 
-export const CourseCreate = () => {
+export const UnitCreate = () => {
     return (
         <Create>
             <SimpleForm>
@@ -10,9 +10,18 @@ export const CourseCreate = () => {
                 label="Title" 
                 />
                 <TextInput 
-                source="imageSrc" 
+                source="description" 
                 validate={[required()]} 
-                label="Image" 
+                label="Description" 
+                />
+                <ReferenceInput 
+                    source="courseId"
+                    reference="courses"
+                />
+                <NumberInput 
+                    source="order"
+                    validate={[required()]}
+                    label="Order"
                 />
             </SimpleForm>
         </Create>
