@@ -95,7 +95,7 @@ const QuestsPage = async () => {
                                         <Progress value={progress} className="h-3" />
                                         <p
                                             className={cn(
-                                                progress >= 100 && "font-bold",
+                                                progress >= 100 && "font-bold"
                                             )}
                                         >
                                             {progress < 100 ? progress + "%" : "Completed"}
