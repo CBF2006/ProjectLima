@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-import { getUserProgress } from "@/db/queries";
+import { getUserProgress, getUserSubscription } from "@/db/queries";
 import { FeedWrapper } from "@/components/feed-wrapper";
 import { UserProgress } from "@/components/user-progress";
 import { StickyWrapper } from "@/components/sticky-wrapper";
@@ -10,17 +10,22 @@ import { Items } from "./items";
 
 const ShopPage = async () => {
     const userProgressData = getUserProgress();
+    const userSubscriptionData = getUserSubscription();
 
     const [
-        userProgress
+        userProgress,
+        userSubsciption,
     ] = await Promise.all([
         userProgressData,
+        userSubscriptionData
     ]);
 
     if (!userProgress || !userProgress.activeCourse) {
         redirect("/courses");
     }
 
+    const isPro = !!userSubsciption?.isActive; // We have to boolean-ify it twice because it could return null which would be bad
+    
     return (
         <div className="flex flex-row-reverse gap-[48px] px-6">
             <StickyWrapper>
@@ -28,7 +33,7 @@ const ShopPage = async () => {
                     activeCourse={userProgress.activeCourse}
                     hearts={userProgress.hearts}
                     points={userProgress.points}
-                    hasActiveSubscription={false}
+                    hasActiveSubscription={isPro}
                 />
             </StickyWrapper>
             <FeedWrapper>
@@ -48,7 +53,7 @@ const ShopPage = async () => {
                     <Items 
                         hearts={userProgress.hearts}
                         points={userProgress.points}
-                        hasActiveSubscription={false} // TODO: Add subscription
+                        hasActiveSubscription={isPro}
                     />
                 </div>
             </FeedWrapper>
