@@ -9,7 +9,7 @@ import { useAudio, useWindowSize, useMount } from "react-use";
 
 import { reduceHearts } from "@/actions/user-progress";
 import { useHeartsModal } from "@/store/use-hearts-modal";
-import { challengeOptions, challenges } from "@/db/schema";
+import { challengeOptions, challenges, userSubscription } from "@/db/schema";
 import { usePracticeModal } from "@/store/use-practice-modal";
 import { upsertChallengeProgress } from "@/actions/challenge-progress";
 
@@ -27,8 +27,10 @@ type Props = {
         completed: boolean;
         challengeOptions: typeof challengeOptions.$inferSelect[];
     })[];
-    userSubscription: any; // TODO: Replace with subscription DB type
-};
+    userSubscription: typeof userSubscription.$inferSelect & {
+        isActive: boolean;
+     } | null;
+}
 
 export const Quiz = ({
     initialPercentage,
@@ -247,8 +249,4 @@ export const Quiz = ({
     );
  };
 
- // audioSrc and imageSrc are not loading/playing/displaying on practice lessons! Specifically the correct/incorrect will, but the end screen won't 
- // Yeah and the end screen modal didn't play...
- // HOWEVER the correct/wrong sounds DO play
-
- // Need to somehow create a way to automatically add hearts after x amount of time. Like what if someone loses all their hearts on the first lesson?
+// Need to somehow create a way to automatically add hearts after x amount of time. Like what if someone loses all their hearts on the first lesson?

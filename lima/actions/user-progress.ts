@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 import { auth, currentUser } from "@clerk/nextjs/server";
 
 import db from "@/db/drizzle";
-import { getCourseById, getUserProgress } from "@/db/queries";
+import { getCourseById, getUserProgress, getUserSubscription } from "@/db/queries";
 import { challengeProgress, challenges, userProgress } from "@/db/schema";
 
 // TODO: Move alongside Item component into a common file
@@ -26,10 +26,9 @@ export const upsertUserProgress = async (courseId: number) => {
         throw new Error("Course not found");
     }
 
-    // TODO: Enable once units and lessons are added
-    // if (!course.units.length || !course.units[0].lessons.length) {
-    //     throw new Error("Course is empty")
-    // }
+    if (!course.units.length || !course.units[0].lessons.length) {
+        throw new Error("Course is empty")
+    }
 
     const existingUserProgress = await getUserProgress();
 
@@ -65,7 +64,7 @@ export const reduceHearts = async (challengeId: number) => {
     }
 
     const currentUserProgress = await getUserProgress();
-    // TODO: Get user subscription
+    const userSubscription = await getUserSubscription();
 
     const challenge = await db.query.challenges.findFirst({
         where: eq(challenges.id, challengeId),
@@ -88,7 +87,7 @@ export const reduceHearts = async (challengeId: number) => {
     const isPractice = !!existingChallengeProgress;
 
     if (isPractice) {
-        return { error: "practice" } // You can add a little popup telling the user that this is a practice and they won't lose hearts
+        return { error: "practice" }
         // You can replace error with reason if you want
     }
 
@@ -96,7 +95,9 @@ export const reduceHearts = async (challengeId: number) => {
         throw new Error("User progress not found");
     }
 
-    // TODO: Handle subscription
+    if (userSubscription?.isActive) {
+        return { error: "subcription" };
+    }
 
     if (currentUserProgress.hearts === 0) {
         return { error: "hearts" };
@@ -137,4 +138,4 @@ export const refillHearts =  async () => {
     revalidatePath("/learn");
     revalidatePath("/quests");
     revalidatePath("/leaderboard");
-}
+};
