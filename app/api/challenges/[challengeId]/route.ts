@@ -1,12 +1,12 @@
 import db from "@/db/drizzle"
-import { lessons } from "@/db/schema"
+import { challenges } from "@/db/schema"
 import { getIsAdmin } from "@/lib/admin";
 import { eq } from "drizzle-orm"
 import { NextResponse } from "next/server";
 
 export const GET = async (
     req: Request,
-    { params }: { params: { lessonId: number } },
+    { params }: { params: { challengeId: number } },
 ) => {
     const isAdmin = getIsAdmin();
 
@@ -14,8 +14,8 @@ export const GET = async (
         return new NextResponse("Unauthorized", { status: 403 });
     }
 
-    const data = await db.query.lessons.findFirst({
-        where: eq(lessons.id, params.lessonId),
+    const data = await db.query.challenges.findFirst({
+        where: eq(challenges.id, params.challengeId),
     });
 
     return NextResponse.json(data);
@@ -23,7 +23,7 @@ export const GET = async (
 
 export const PUT = async (
     req: Request,
-    { params }: { params: { lessonId: number } },
+    { params }: { params: { challengeId: number } },
 ) => {
     const isAdmin = getIsAdmin();
 
@@ -32,16 +32,16 @@ export const PUT = async (
     }
 
     const body = await req.json();
-    const data = await db.update(lessons).set({
+    const data = await db.update(challenges).set({
         ...body,
-    }).where(eq(lessons.id, params.lessonId)).returning();
+    }).where(eq(challenges.id, params.challengeId)).returning();
 
     return NextResponse.json(data[0]);
 };
 
 export const DELETE = async (
     req: Request,
-    { params }: { params: { lessonId: number } },
+    { params }: { params: { challengeId: number } },
 ) => {
     const isAdmin = getIsAdmin();
 
@@ -49,8 +49,8 @@ export const DELETE = async (
         return new NextResponse("Unauthorized", { status: 403 });
     }
 
-    const data = await db.delete(lessons)
-        .where(eq(lessons.id, params.lessonId)).returning();
+    const data = await db.delete(challenges)
+        .where(eq(challenges.id, params.challengeId)).returning();
 
     return NextResponse.json(data[0]);
 };
