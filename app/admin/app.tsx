@@ -57,11 +57,12 @@ export const App = () => {
                 recordRepresentation="question"
             />
             <Resource
-                name="Challenge Options"
+                name="challengeOptions"
                 list={ChallengeOptionList}
                 create={ChallengeOptionCreate}
                 edit={ChallengeOptionEdit}
                 recordRepresentation="text"
+                options={{ label : "Challenge Options" }}
             />
         </Admin>
     );
