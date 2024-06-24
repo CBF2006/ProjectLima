@@ -1,13 +1,20 @@
 "use client";
 
-import { Admin } from "react-admin";
+import { Admin, ListGuesser, Resource } from "react-admin";
+import simpleRestProvider from "ra-data-simple-rest";
+
+const dataProvider = simpleRestProvider("/api");
 
 export const App = () => {
     return (
-        <Admin>
-            Admin?
+        <Admin dataProvider={dataProvider}>
+            <Resource 
+                name="courses"
+                list={ListGuesser}
+                recordRepresentation="title"
+            />
         </Admin>
-    ) 
+    );
 };
 
 export default App;
