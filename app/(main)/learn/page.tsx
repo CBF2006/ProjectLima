@@ -1,8 +1,10 @@
 import { redirect } from "next/navigation";
 
+import { Promo } from "@/components/promo";
 import { FeedWrapper } from "@/components/feed-wrapper";
 import { StickyWrapper } from "@/components/sticky-wrapper";
 import { UserProgress } from "@/components/user-progress";
+import { lessons, units as unitsSchema} from "@/db/schema";
 import { 
     getCourseProgress, 
     getLessonPercentage, 
@@ -45,6 +47,8 @@ const LearnPage = async () => {
         redirect("/courses");
     }
 
+    const isPro = !!userSubscription?.isActive;
+
     return ( // Try and remove flex-row-reverse and flip sticky and feed wrapper's postion in the code
         <div className="flex flex-row-reverse gap-[48px] px-6">
             <StickyWrapper>
@@ -52,8 +56,11 @@ const LearnPage = async () => {
                     activeCourse={userProgress.activeCourse}
                     hearts={userProgress.hearts}
                     points={userProgress.points}
-                    hasActiveSubscription={!!userSubscription}
+                    hasActiveSubscription={isPro}
                 />
+                {!isPro && (
+                    <Promo />
+                )}
             </StickyWrapper>
             <FeedWrapper>
                 <Header title={userProgress.activeCourse.title} />
