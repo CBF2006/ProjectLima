@@ -234,3 +234,24 @@ export const getUserSubscription = cache(async () => {
 });
 
 // **We have not handled refunds in this tutorial, only cancelling the subcription**
+
+export const getTopTenUsers = cache(async () => {
+    const { userId } = await auth();
+
+    if (!userId) {
+        return [];
+    }
+
+    const data = await db.query.userProgress.findMany({
+        orderBy: (userProgress, { desc }) => [desc(userProgress.points)],
+        limit: 10, // Controls the number of people displayed. May want to remove limit? Idk. Maybe add leagues later so not everyone is loaded at once
+        columns: {
+            userId: true,
+            userName: true,
+            userImageSrc: true,
+            points: true,
+        },
+    });
+
+    return data;
+});
