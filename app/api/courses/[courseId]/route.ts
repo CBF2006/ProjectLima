@@ -14,10 +14,27 @@ export const GET = async (
         return new NextResponse("Unauthorized", { status: 403 });
     }
 
+    const data = await db.query.courses.findFirst({
+        where: eq(courses.id, params.courseId),
+    });
+
+    return NextResponse.json(data);
+};
+
+export const PUT = async (
+    req: Request,
+    { params }: { params: { courseId: number } },
+) => {
+    const isAdmin = getIsAdmin();
+
+    if (!isAdmin) {
+        return new NextResponse("Unauthorized", { status: 403 });
+    }
+
     const body = await req.json();
     const data = await db.update(courses).set({
-        ...body
-    }).where(eq(courses.id, params.courseId));
+        ...body,
+    }).where(eq(courses.id, params.courseId)).returning();
 
     return NextResponse.json(data);
 };
