@@ -6,6 +6,7 @@ import { useTransition } from "react";
 
 import { Button } from "@/components/ui/button";
 import { refillHearts } from "@/actions/user-progress";
+import { createStripeUrl } from "@/actions/user-subscription";
 
 const POINTS_TO_REFILL = 10;
 
@@ -29,6 +30,18 @@ export const Items = ({
 
         startTransition(() => {
             refillHearts()
+                .catch(() => toast.error("Something went wrong"));
+        });
+    };
+
+    const onUpgrade = () => {
+        startTransition(() => {
+            createStripeUrl()
+                .then((response) => {
+                    if (response.data) {
+                        window.location.href = response.data;
+                    }
+                })
                 .catch(() => toast.error("Something went wrong"));
         });
     };
@@ -85,8 +98,11 @@ export const Items = ({
                             Unlimited Hearts
                         </p>
                     </div>
-                    <Button>
-                        {hasActiveSubscription ? "active" : "upgrade"}
+                    <Button
+                        onClick={onUpgrade}
+                        disabled={pending}
+                    >
+                        {hasActiveSubscription ? "settings" : "upgrade"}
                     </Button>
             </div>
         </ul>
