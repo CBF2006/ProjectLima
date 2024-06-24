@@ -15,6 +15,7 @@ import {
 
 import { Header } from "./header";
 import { Unit } from "./unit";
+import { Quests } from "@/components/quests";
 
 // Sidebar Icon Hex: #22d3ee
 
@@ -61,6 +62,7 @@ const LearnPage = async () => {
                 {!isPro && (
                     <Promo />
                 )}
+                <Quests points={userProgress.points} />
             </StickyWrapper>
             <FeedWrapper>
                 <Header title={userProgress.activeCourse.title} />
