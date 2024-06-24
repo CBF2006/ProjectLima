@@ -1,11 +1,18 @@
 "use client";
 
-import { Admin } from "react-admin";
+import { Admin, DataProvider, ListGuesser, Resource, memoryStore } from "react-admin";
+import simpleRestProvider from "ra-data-simple-rest";
+
+const dataProvider = simpleRestProvider("/api") as DataProvider; // Will break unless you put "as DataProvider" https://github.com/marmelab/react-admin/issues/5476
 
 export const App = () => {
     return (
-        <Admin>
-            Admin?
+        <Admin dataProvider={dataProvider}>
+            <Resource
+                name="courses"
+                list={ListGuesser}
+                recordRepresentation="title"
+            />
         </Admin>
     ) 
 };
