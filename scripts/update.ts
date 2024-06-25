@@ -10,7 +10,7 @@ const db = drizzle(sql, { schema });
 
 const main = async () => {
     try {
-        console.log("Seeding Database...");
+        console.log("Updating Database...");
 
         await db.delete(schema.challengeOptions);
         await db.delete(schema.challenges);
@@ -117,10 +117,10 @@ const main = async () => {
             { challengeId: 6, imageSrc: "/child.svg", correct: true, text: "아이", audioSrc: "/kr_child.mp3" },
         ]);
 
-        await db.insert(schema.challengeOptions).values([ // JP - Lesson 2
-            { challengeId: 11, imageSrc: "/jp_a.svg", correct: false, text: "", audioSrc: "/jp_a.mp3" },
+        await db.insert(schema.challengeOptions).values([ // JP - Lesson 1
+            { challengeId: 11, imageSrc: "/jp_a.svg", correct: true, text: "", audioSrc: "/jp_a.mp3" },
             { challengeId: 11, imageSrc: "/jp_i.svg", correct: false, text: "", audioSrc: "/jp_i.mp3" },
-            { challengeId: 11, imageSrc: "/jp_o.svg", correct: true, text: "", audioSrc: "/jp_o.mp3" },
+            { challengeId: 11, imageSrc: "/jp_o.svg", correct: false, text: "", audioSrc: "/jp_o.mp3" },
             { challengeId: 11, imageSrc: "/jp_u.svg", correct: false, text: "", audioSrc: "/jp_u.mp3" },
 
             { challengeId: 12, imageSrc: "/jp_e.svg", correct: false, text: "", audioSrc: "/jp_e.mp3" },
@@ -186,10 +186,10 @@ const main = async () => {
             { id: 10, lessonId: 2, type: "ASSIST", order: 4, question: '"오"' },
         ]);
 
-        console.log("Seeding Finished!");
+        console.log("Update Finished!");
     } catch (error) {
         console.error(error);
-        throw new Error("Failed to seed the database");
+        throw new Error("Failed to update the database");
     }
 };
 

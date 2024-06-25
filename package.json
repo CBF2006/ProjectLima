@@ -9,7 +9,7 @@
     "lint": "next lint",
     "db:studio": "bunx drizzle-kit studio",
     "db:push": "bunx drizzle-kit push",
-    "db:seed": "bun ./scripts/seed.ts",
+    "db:wipe": "bun ./scripts/wipe-users.ts",
     "db:reset": "bun ./scripts/reset.ts",
     "db:update": "bun ./scripts/update.ts"
   },
