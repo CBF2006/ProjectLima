@@ -4,11 +4,6 @@ export const ChallengeOptionEdit = () => {
     return (
         <Edit>
             <SimpleForm>
-                <TextInput 
-                    source="question" 
-                    validate={[required()]}
-                    label="Question" 
-                />
                 <BooleanInput 
                     source="correct"
                     validate={[required()]}
