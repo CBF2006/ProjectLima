@@ -34,3 +34,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# scripts (run server-side so don't want to have to redeploy because of them)
+/scripts
