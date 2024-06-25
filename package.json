@@ -10,7 +10,8 @@
     "db:studio": "bunx drizzle-kit studio",
     "db:push": "bunx drizzle-kit push",
     "db:seed": "bun ./scripts/seed.ts",
-    "db:reset": "bun ./scripts/reset.ts"
+    "db:reset": "bun ./scripts/reset.ts",
+    "db:update": "bun ./scripts/update.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^5.1.3",
