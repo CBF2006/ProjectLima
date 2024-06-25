@@ -44,7 +44,7 @@ export const HeartsModal = () => {
                         />
                     </div>
                     <DialogTitle className="text-center font-bold text-2xl">
-                        You've run out of hearts!
+                        You&apos;ve run out of hearts!
                     </DialogTitle>
                     <DialogDescription className="text-center text-base"> 
                         Get Pro for unlimited hearts, purchase them in the store, or do practice lessons.
