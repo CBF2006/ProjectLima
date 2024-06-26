@@ -17,10 +17,15 @@ export const ChallengeList = () => {
                             id: "ASSIST",
                             name: "ASSIST",
                         },
+                        {
+                            id: "LISTEN_SELECT",
+                            name: "LISTEN_SELECT",
+                        },
                     ]}
                 /> {/*You can add more options in the array*/}
                 <ReferenceField source="lessonId" reference="lessons" />
                 <NumberField source="order" />
+                <TextField source="audioSrc" />
             </Datagrid>
         </List>
     );

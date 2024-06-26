@@ -24,7 +24,8 @@ export const Challenge = ({
         <div className={cn(
             "grid gap-2",
             type === "ASSIST" && "grid-cols-1",
-            type === "SELECT" && "grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))]"
+            type === "SELECT" && "grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
+            type === "LISTEN_SELECT" && "grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))]", // You have to enter in classNames for EACH NEW Question Type you add, even if it's the same as a differen't one. You may be able to do it easier but I don't have that many types now so it's not a big deal
         )}>
             {options.map((option, i) => (
                 <Card 

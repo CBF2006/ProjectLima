@@ -46,7 +46,7 @@ export const lessonsRelations = relations(lessons, ({ one, many }) =>
     challenges: many(challenges),
 }));
 
-export const challengesEnum = pgEnum("type", ["SELECT", "ASSIST"]); // Add Voice/Listen here
+export const challengesEnum = pgEnum("type", ["SELECT", "ASSIST", "LISTEN_SELECT"]); // Add Voice/Listen here
 
 export const challenges = pgTable("challenges", {
     id: serial("id").primaryKey(),
@@ -55,6 +55,7 @@ export const challenges = pgTable("challenges", {
     type: challengesEnum("type").notNull(),
     question: text("question").notNull(),
     order: integer("order").notNull(), // Sort by hardest or sum other arbitrary value
+    audioSrc: text("audioSrc"),
 });
 
 export const challengesRelations = relations(challenges, ({ one, many }) =>

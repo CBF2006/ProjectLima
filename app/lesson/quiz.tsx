@@ -17,7 +17,8 @@ import { Header } from "./header";
 import { Footer } from "./footer";
 import { Challenge } from "./challenge";
 import { ResultCard } from "./result-card";
-import { QuestionBubble } from "./question.bubble";
+import { QuestionBubble } from "./question_bubble";
+import { ListenButton } from "./listen_button";
 
 type Props = {
     initialPercentage: number;
@@ -205,9 +206,12 @@ export const Quiz = ({
         )
     }
 
-    const title = challenge.type === "ASSIST" // Will need to be modified once you add other question types to a if-then-else statement
-    ? "Select the correct meaning"
-    : challenge.question;
+    const title =
+        challenge.type === "ASSIST"
+        ? "Select the correct meaning"
+        : challenge.type === "LISTEN_SELECT"
+        ? "What do you hear?"
+        : challenge.question;
 
     return (
         <>
@@ -224,6 +228,12 @@ export const Quiz = ({
                         <h1 className="text-lg lg:text-3xl text-center lg:text-start font-bold text-neutral-700">
                            {title}
                         </h1>
+                        { challenge.type === "LISTEN_SELECT" && (
+                            <div className="flex justify-center">
+                                <ListenButton 
+                                    audioSrc={challenge.audioSrc}
+                                />
+                            </div> )}
                         <div>
                             {challenge.type === "ASSIST" && (
                                 <QuestionBubble question={challenge.question} />

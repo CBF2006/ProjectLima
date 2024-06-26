@@ -20,6 +20,10 @@ export const ChallengeEdit = () => {
                             id: "ASSIST",
                             name: "ASSIST",
                         },
+                        {
+                            id: "LISTEN_SELECT",
+                            name: "LISTEN_SELECT",
+                        },
                     ]}
                     validate={[required()]}
                 /> {/*You can add more options in the array*/}
@@ -31,6 +35,10 @@ export const ChallengeEdit = () => {
                     source="order"
                     validate={[required()]}
                     label="Order"
+                />
+                <TextInput 
+                source="audioSrc" 
+                label="Audio Src" 
                 />
             </SimpleForm>
         </Edit>
