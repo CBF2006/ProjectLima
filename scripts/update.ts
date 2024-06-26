@@ -78,11 +78,11 @@ const main = async () => {
         ]);
 
         await db.insert(schema.challenges).values([ // JP - Lesson 2
-            { id: 17, lessonId: 17, type: "SELECT", order: 1, question: 'Which one of these is "あ"?' },
-            { id: 18, lessonId: 17, type: "SELECT", order: 2, question: 'Which one of these is "う"?' },
-            { id: 19, lessonId: 17, type: "SELECT", order: 3, question: 'Which one of these is "え"?' },
-            { id: 20, lessonId: 17, type: "SELECT", order: 4, question: 'Which one of these is "お"?' },
-            { id: 21, lessonId: 17, type: "SELECT", order: 5, question: 'Which one of these is "い"?' },
+            { id: 17, lessonId: 17, type: "SELECT", order: 1, question: 'Which one of these is "か"?' },
+            { id: 18, lessonId: 17, type: "SELECT", order: 2, question: 'Which one of these is "く"?' },
+            { id: 19, lessonId: 17, type: "SELECT", order: 3, question: 'Which one of these is "け"?' },
+            { id: 20, lessonId: 17, type: "SELECT", order: 4, question: 'Which one of these is "こ"?' },
+            { id: 21, lessonId: 17, type: "SELECT", order: 5, question: 'Which one of these is "き"?' },
             { id: 22, lessonId: 17, type: "SELECT", order: 6, question: 'Which one of these is "the home"?' },
         ]);
 
@@ -149,9 +149,9 @@ const main = async () => {
         ]);
 
         await db.insert(schema.challengeOptions).values([ // JP - Lesson 2
-            { challengeId: 17, imageSrc: "/jp_ka.svg", correct: false, text: "", audioSrc: "/jp_ka.mp3" },
+            { challengeId: 17, imageSrc: "/jp_ka.svg", correct: true, text: "", audioSrc: "/jp_ka.mp3" },
             { challengeId: 17, imageSrc: "/jp_ki.svg", correct: false, text: "", audioSrc: "/jp_ki.mp3" },
-            { challengeId: 17, imageSrc: "/jp_ko.svg", correct: true, text: "", audioSrc: "/jp_ko.mp3" },
+            { challengeId: 17, imageSrc: "/jp_ko.svg", correct: false, text: "", audioSrc: "/jp_ko.mp3" },
             { challengeId: 17, imageSrc: "/jp_ku.svg", correct: false, text: "", audioSrc: "/jp_u.mp3" },
 
             { challengeId: 18, imageSrc: "/jp_ke.svg", correct: false, text: "", audioSrc: "/jp_ke.mp3" },
