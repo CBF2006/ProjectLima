@@ -3,11 +3,17 @@ Brian
 Sarah *** PRETTY GOOD
 Adam *** RLY GOOD
 
-Adam
-Sarah
-Sarah
-Adam
-Adam
+V - Adam
+K - Sarah
+S - Sarah
+T - Adam
+N - Adam
+H - Sarah
+M - Sarah
+R - Adam
+Y - Adam
+W - Sarah
+n - Sarah
 
 -------------------------
 
