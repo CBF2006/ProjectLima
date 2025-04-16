@@ -38,7 +38,10 @@
     "stripe": "^15.12.0",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
-    "zustand": "^4.5.2"
+    "zustand": "^4.5.2",
+    "array.prototype.foreach": "^1.0.1",
+    "has": "^1.0.3",
+    "path-to-regexp": "^6.2.1"
   },
   "devDependencies": {
     "@types/node": "^20",
