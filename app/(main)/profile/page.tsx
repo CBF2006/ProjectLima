@@ -24,15 +24,22 @@ const ProfilePage = () => {
           className="w-16 h-16 rounded-full"
         />
         <div>
-          <h1 className="text-xl font-bold">{user.username || user.firstName || "User"}</h1>
+          <h1 className="text-xl font-bold">{user.fullName || user.firstName || "User"}</h1>
           <h3 className="text-lg text-gray-600">
-            Profile Page
+            {user.username || user.firstName || "User"}
           </h3>
         </div>
       </div>
 
       <Button variant="primary" size="lg">
         Edit Profile
+      </Button>
+
+      <Button 
+        variant="ghost" 
+        size="lg"
+        >
+        Manage Account
       </Button>
     </div>
   );
