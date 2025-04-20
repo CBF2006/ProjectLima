@@ -4,11 +4,6 @@ import { Button } from "@/components/ui/button";
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 
-/* <Link href="/user">
-  <Button variant="outline">Edit Profile</Button>
-</Link> */
-
-
 const ProfilePage = () => {
   const { isLoaded, isSignedIn, user } = useUser();
 
