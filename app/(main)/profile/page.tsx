@@ -1,41 +1,40 @@
-"use client";
+import Profile from "@/components/profile";
+import { redirect } from "next/navigation";
+import { getUserProgress, getUserSubscription } from "@/db/queries";
+import { FeedWrapper } from "@/components/feed-wrapper";
+import { UserProgress } from "@/components/user-progress";
+import { StickyWrapper } from "@/components/sticky-wrapper";
+import { Promo } from "@/components/promo";
+import { Quests } from "@/components/quests";
+import Image from "next/image";
 
-import { Button } from "@/components/ui/button";
-import { useUser } from "@clerk/nextjs";
-import Link from "next/link";
 
-const ProfilePage = () => {
-  const { isLoaded, isSignedIn, user } = useUser();
 
-  if (!isLoaded) return <div>Loading...</div>;
-  if (!isSignedIn || !user) return <div>Please sign in to view your profile.</div>;
+const ProfilePage = async () => {
+  const userProgress = await getUserProgress();
+  const userSubscription = await getUserSubscription();
+
+  if (!userProgress || !userProgress.activeCourse) {
+    redirect("/courses");
+  }
+
+  const isPro = !!userSubscription?.isActive;
 
   return (
-    <div className="border-2 rounded-xl p-4 space-y-4 max-w-md mx-auto">
-      <div className="flex items-center space-x-4">
-        <img
-          src={user.imageUrl}
-          alt="User profile"
-          className="w-16 h-16 rounded-full"
+    <div className="flex flex-row-reverse gap-[48px] px-6">
+      <StickyWrapper>
+        <UserProgress
+          activeCourse={userProgress.activeCourse}
+          hearts={userProgress.hearts}
+          points={userProgress.points}
+          hasActiveSubscription={isPro}
         />
-        <div>
-          <h1 className="text-xl font-bold">{user.fullName || user.firstName || "User"}</h1>
-          <h3 className="text-lg text-gray-600">
-            {user.username || user.firstName || "User"}
-          </h3>
-        </div>
-      </div>
-
-      <Button variant="primary" size="lg">
-        Edit Profile
-      </Button>
-
-      <Button 
-        variant="ghost" 
-        size="lg"
-        >
-        Manage Account
-      </Button>
+        {!isPro && <Promo />}
+        <Quests points={userProgress.points} />
+      </StickyWrapper>
+      <FeedWrapper>
+        <Profile/>
+      </FeedWrapper>
     </div>
   );
 };
