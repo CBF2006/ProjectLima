@@ -1,4 +1,4 @@
-import Profile from "@/components/profile";
+import { VideoList } from "@/components/video-list";
 import { redirect } from "next/navigation";
 import { getUserProgress, getUserSubscription } from "@/db/queries";
 import { FeedWrapper } from "@/components/feed-wrapper";
@@ -8,9 +8,7 @@ import { Promo } from "@/components/promo";
 import { Quests } from "@/components/quests";
 import Image from "next/image";
 
-
-
-const ProfilePage = async () => {
+const PracticePage = async () => {
   const userProgress = await getUserProgress();
   const userSubscription = await getUserSubscription();
 
@@ -33,10 +31,25 @@ const ProfilePage = async () => {
         <Quests points={userProgress.points} />
       </StickyWrapper>
       <FeedWrapper>
-        <Profile/>
+        <div className="w-full flex flex-col items-center">
+            <Image 
+                src="/practice.svg"
+                alt="Practice"
+                height={90}
+                width={90}
+            />
+            <h1 className="text-center font-bold text-neutral-800 text-2xl my-6">
+                Practice
+            </h1>
+            <p className="text-muted-foreground text-center text-lg mb-6">
+                Learn more with content tailored to your interests and level.
+            </p>
+            
+            <VideoList />
+        </div>
       </FeedWrapper>
     </div>
   );
 };
 
-export default ProfilePage;
+export default PracticePage;
