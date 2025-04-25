@@ -66,7 +66,12 @@ export const Card = ({
                         !text && "flex justify-center items-center"
                     )}
                 >
-                    <Image src={imageSrc} fill alt={imageSrc} />
+                    <Image
+                        src={imageSrc} 
+                        fill 
+                        alt={imageSrc}
+                        className="dark:invert"
+                    />
                 </div>
             )}
             {text ? (
