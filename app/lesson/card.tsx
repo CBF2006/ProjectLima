@@ -38,9 +38,7 @@ export const Card = ({
     const handleClick = useCallback(() => {
         if (disabled) return;
 
-    if (isListenLike) {
         controls.play();
-    }
     
         onClick();
     }, [disabled, onClick, controls, isListenLike]);
