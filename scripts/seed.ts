@@ -80,7 +80,7 @@ const main = async () => {
             { id: 62, lessonId: 2, type: "LISTEN_SELECT", order: 5, question: '', audioSrc: "/kr_ma.mp3" },
             { id: 63, lessonId: 2, type: "LISTEN_SELECT", order: 6, question: '', audioSrc: "/kr_ba.mp3" },
             { id: 64, lessonId: 2, type: "LISTEN_SELECT", order: 7, question: '', audioSrc: "/kr_sa.mp3" },
-            { id: 65, lessonId: 2, type: "LISTEN_SELECT", order: 8, question: '', audioSrc: "/kr_sada.mp3" },
+            { id: 65, lessonId: 2, type: "LISTEN_ASSIST", order: 8, question: '', audioSrc: "/kr_sada.mp3" },
         ]);
 
         await db.insert(schema.challenges).values([ // JP - Unit 1 Lesson 1
@@ -217,9 +217,9 @@ const main = async () => {
             { challengeId: 64, imageSrc: "/kr_da.svg", correct: false, text: "", audioSrc: "/kr_da.mp3" },
             { challengeId: 64, imageSrc: "/kr_ma.svg", correct: false, text: "", audioSrc: "/kr_ma.mp3" },
             
-            { challengeId: 65, imageSrc: "/ida.svg", correct: false, text: "이다", audioSrc: "/kr_ida.mp3" },
-            { challengeId: 65, imageSrc: "/sada.svg", correct: true, text: "사다", audioSrc: "/kr_sada.mp3" },
-            { challengeId: 65, imageSrc: "/gada.svg", correct: false, text: "가다", audioSrc: "/kr_gada.mp3" },
+            { challengeId: 65, imageSrc: "", correct: false, text: "이다", audioSrc: "/kr_ida.mp3" },
+            { challengeId: 65, imageSrc: "", correct: true, text: "사다", audioSrc: "/kr_sada.mp3" },
+            { challengeId: 65, imageSrc: "", correct: false, text: "가다", audioSrc: "/kr_gada.mp3" },
           ]);
           
 

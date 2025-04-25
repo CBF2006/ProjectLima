@@ -32,12 +32,18 @@ export const Card = ({
 }: Props) => {
     const [audio, _, controls] = useAudio({ src: audioSrc || "" });
 
+    const isAssistLike = type === "ASSIST" || type === "LISTEN_ASSIST";
+    const isListenLike = type === "LISTEN_SELECT" || type === "LISTEN_ASSIST";
+
     const handleClick = useCallback(() => {
         if (disabled) return;
 
+    if (isListenLike) {
         controls.play();
+    }
+    
         onClick();
-    }, [disabled, onClick, controls]);
+    }, [disabled, onClick, controls, isListenLike]);
 
     useKey(shortcut, handleClick, {}, [handleClick]); // HANDLES PRESSING 1,2,3,4 OMGGGG YESSSSS
 
@@ -54,6 +60,7 @@ export const Card = ({
             )}
         >
             {audio}
+
             {imageSrc && (
                 <div
                     className={cn(
@@ -67,11 +74,11 @@ export const Card = ({
             {text ? (
                 <div className={cn(
                     "flex items-center justify-between",
-                    type === "ASSIST" && "flex-row-reverse",
+                    isAssistLike && "flex-row-reverse",
                 )}>
-                    {type === "ASSIST" && <div />}
+                    {isAssistLike && <div />}
                     <p className={cn(
-                        "text-neutral-600 text-sm lg:text-base",
+                        "text-neutral-600 text-sm lg:text-base font-semibold",
                         selected && "text-sky-500",
                         selected && status === "correct" && "text-green-500",
                         selected && status === "wrong" && "text-rose-500",

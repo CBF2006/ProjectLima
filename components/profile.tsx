@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 
-const ProfilePage = () => {
+const Profile = () => {
   const { isLoaded, isSignedIn, user } = useUser();
 
   if (!isLoaded) return <div>Loading...</div>;
@@ -40,4 +40,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default Profile;
