@@ -70,8 +70,8 @@ export const Card = ({
                         src={imageSrc} 
                         fill 
                         alt={imageSrc}
-                        className="dark:invert"
-                    />
+                        className="dark:invert" // Will need to fix cuz this will invert all images. May need to have one for chracters one for images                
+                        />
                 </div>
             )}
             {text ? (
