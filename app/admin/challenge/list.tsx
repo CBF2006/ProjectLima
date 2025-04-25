@@ -21,6 +21,10 @@ export const ChallengeList = () => {
                             id: "LISTEN_SELECT",
                             name: "LISTEN_SELECT",
                         },
+                        {
+                            id: "LISTEN_ASSIST",
+                            name: "LISTEN_ASSIST",
+                        },
                     ]}
                 /> {/*You can add more options in the array*/}
                 <ReferenceField source="lessonId" reference="lessons" />

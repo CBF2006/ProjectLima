@@ -24,6 +24,11 @@ export const ChallengeCreate = () => {
                             id: "LISTEN_SELECT",
                             name: "LISTEN_SELECT",
                         },
+                        {
+                            id: "LISTEN_ASSIST",
+                            name: "LISTEN_ASSIST",
+                        },
+                        
                     ]}
                     validate={[required()]}
                 /> {/*You can add more options in the array*/}

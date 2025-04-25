@@ -211,6 +211,8 @@ export const Quiz = ({
         ? "Select the correct meaning"
         : challenge.type === "LISTEN_SELECT"
         ? "What do you hear?"
+        : challenge.type === "LISTEN_ASSIST"
+        ? "What do you hear?"
         : challenge.question;
 
     return (
@@ -228,7 +230,7 @@ export const Quiz = ({
                         <h1 className="text-lg lg:text-3xl text-center lg:text-start font-bold text-neutral-700">
                            {title}
                         </h1>
-                        { challenge.type === "LISTEN_SELECT" && (
+                        { (challenge.type === "LISTEN_SELECT" || challenge.type == "LISTEN_ASSIST") && (
                             <div className="flex justify-center">
                                 <ListenButton 
                                     audioSrc={challenge.audioSrc}

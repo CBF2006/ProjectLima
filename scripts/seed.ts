@@ -72,6 +72,17 @@ const main = async () => {
             { id: 6, lessonId: 1, type: "SELECT", order: 6, question: 'Which one of these is "the child"?', audioSrc: "" },
         ]);
 
+        await db.insert(schema.challenges).values([ // KR - Lesson 2
+            { id: 58, lessonId: 2, type: "LISTEN_SELECT", order: 1, question: '', audioSrc: "/kr_ga.mp3" },
+            { id: 59, lessonId: 2, type: "LISTEN_SELECT", order: 2, question: '', audioSrc: "/kr_na.mp3" },
+            { id: 60, lessonId: 2, type: "LISTEN_SELECT", order: 3, question: '', audioSrc: "/kr_da.mp3" },
+            { id: 61, lessonId: 2, type: "LISTEN_SELECT", order: 4, question: '', audioSrc: "/kr_ra.mp3" },
+            { id: 62, lessonId: 2, type: "LISTEN_SELECT", order: 5, question: '', audioSrc: "/kr_ma.mp3" },
+            { id: 63, lessonId: 2, type: "LISTEN_SELECT", order: 6, question: '', audioSrc: "/kr_ba.mp3" },
+            { id: 64, lessonId: 2, type: "LISTEN_SELECT", order: 7, question: '', audioSrc: "/kr_sa.mp3" },
+            { id: 65, lessonId: 2, type: "LISTEN_ASSIST", order: 8, question: '', audioSrc: "/kr_sada.mp3" },
+        ]);
+
         await db.insert(schema.challenges).values([ // JP - Unit 1 Lesson 1
             { id: 7, lessonId: 16, type: "LISTEN_SELECT", order: 1, question: '', audioSrc: "/jp_a.mp3" },
             { id: 8, lessonId: 16, type: "LISTEN_SELECT", order: 2, question: '', audioSrc: "/jp_u.mp3" },
@@ -168,6 +179,49 @@ const main = async () => {
             { challengeId: 6, imageSrc: "/milk.svg", correct: false, text: "우유", audioSrc: "/kr_milk.mp3" },
             { challengeId: 6, imageSrc: "/child.svg", correct: true, text: "아이", audioSrc: "/kr_child.mp3" },
         ]);
+
+        await db.insert(schema.challengeOptions).values([
+            // KR - Lesson 2
+            { challengeId: 58, imageSrc: "/kr_na.svg", correct: false, text: "", audioSrc: "/kr_na.mp3" },
+            { challengeId: 58, imageSrc: "/kr_ra.svg", correct: false, text: "", audioSrc: "/kr_ra.mp3" },
+            { challengeId: 58, imageSrc: "/kr_da.svg", correct: false, text: "", audioSrc: "/kr_da.mp3" },
+            { challengeId: 58, imageSrc: "/kr_ga.svg", correct: true, text: "", audioSrc: "/kr_ga.mp3" },
+          
+            { challengeId: 59, imageSrc: "/kr_sa.svg", correct: false, text: "", audioSrc: "/kr_sa.mp3" },
+            { challengeId: 59, imageSrc: "/kr_na.svg", correct: true, text: "", audioSrc: "/kr_na.mp3" },
+            { challengeId: 59, imageSrc: "/kr_ma.svg", correct: false, text: "", audioSrc: "/kr_ma.mp3" },
+            { challengeId: 59, imageSrc: "/kr_ba.svg", correct: false, text: "", audioSrc: "/kr_ba.mp3" },
+          
+            { challengeId: 60, imageSrc: "/kr_ra.svg", correct: false, text: "", audioSrc: "/kr_ra.mp3" },
+            { challengeId: 60, imageSrc: "/kr_da.svg", correct: true, text: "", audioSrc: "/kr_da.mp3" },
+            { challengeId: 60, imageSrc: "/kr_ga.svg", correct: false, text: "", audioSrc: "/kr_ga.mp3" },
+            { challengeId: 60, imageSrc: "/kr_na.svg", correct: false, text: "", audioSrc: "/kr_na.mp3" },
+          
+            { challengeId: 61, imageSrc: "/kr_ma.svg", correct: false, text: "", audioSrc: "/kr_ma.mp3" },
+            { challengeId: 61, imageSrc: "/kr_ra.svg", correct: true, text: "", audioSrc: "/kr_ra.mp3" },
+            { challengeId: 61, imageSrc: "/kr_da.svg", correct: false, text: "", audioSrc: "/kr_da.mp3" },
+            { challengeId: 61, imageSrc: "/kr_sa.svg", correct: false, text: "", audioSrc: "/kr_sa.mp3" },
+          
+            { challengeId: 62, imageSrc: "/kr_ba.svg", correct: false, text: "", audioSrc: "/kr_ba.mp3" },
+            { challengeId: 62, imageSrc: "/kr_na.svg", correct: false, text: "", audioSrc: "/kr_na.mp3" },
+            { challengeId: 62, imageSrc: "/kr_ma.svg", correct: true, text: "", audioSrc: "/kr_ma.mp3" },
+            { challengeId: 62, imageSrc: "/kr_sa.svg", correct: false, text: "", audioSrc: "/kr_sa.mp3" },
+          
+            { challengeId: 63, imageSrc: "/kr_sa.svg", correct: false, text: "", audioSrc: "/kr_sa.mp3" },
+            { challengeId: 63, imageSrc: "/kr_ga.svg", correct: false, text: "", audioSrc: "/kr_ga.mp3" },
+            { challengeId: 63, imageSrc: "/kr_ma.svg", correct: false, text: "", audioSrc: "/kr_ma.mp3" },
+            { challengeId: 63, imageSrc: "/kr_ba.svg", correct: true, text: "", audioSrc: "/kr_ba.mp3" },
+          
+            { challengeId: 64, imageSrc: "/kr_sa.svg", correct: true, text: "", audioSrc: "/kr_sa.mp3" },
+            { challengeId: 64, imageSrc: "/kr_na.svg", correct: false, text: "", audioSrc: "/kr_na.mp3" },
+            { challengeId: 64, imageSrc: "/kr_da.svg", correct: false, text: "", audioSrc: "/kr_da.mp3" },
+            { challengeId: 64, imageSrc: "/kr_ma.svg", correct: false, text: "", audioSrc: "/kr_ma.mp3" },
+            
+            { challengeId: 65, imageSrc: "", correct: false, text: "이다", audioSrc: "/kr_ida.mp3" },
+            { challengeId: 65, imageSrc: "", correct: true, text: "사다", audioSrc: "/kr_sada.mp3" },
+            { challengeId: 65, imageSrc: "", correct: false, text: "가다", audioSrc: "/kr_gada.mp3" },
+          ]);
+          
 
         await db.insert(schema.challengeOptions).values([ // JP - Unit 1 Lesson 1
             { challengeId: 7, imageSrc: "/jp_a.svg", correct: true, text: "", audioSrc: "/jp_a.mp3" },
