@@ -7,6 +7,7 @@ import { StickyWrapper } from "@/components/sticky-wrapper";
 import { Promo } from "@/components/promo";
 import { Quests } from "@/components/quests";
 import Image from "next/image";
+import { DarkModeToggle } from "@/components/ui/dark-mode-toggle";
 
 
 
@@ -34,6 +35,7 @@ const ProfilePage = async () => {
       </StickyWrapper>
       <FeedWrapper>
         <Profile/>
+        <DarkModeToggle/>
       </FeedWrapper>
     </div>
   );
