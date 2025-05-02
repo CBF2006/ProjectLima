@@ -2,8 +2,12 @@
   @tailwind components;
   @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Noto+Sans+KR&family=Noto+Sans+JP&display=swap');
+
 html,
-body,
+body {
+  font-family: 'Noto Sans', 'Noto Sans KR', 'Noto Sans JP', sans-serif;
+}
 root {
   @apply h-full;
 }

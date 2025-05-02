@@ -52,6 +52,16 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        brand: {
+          DEFAULT: "#7DD8E2", // Primary Color
+          dark: "#16425B", // Deep Blue
+          light: "#62AAB3", // Light Blue
+          light90: "rgba(98, 170, 179, .90)",
+          accent: "#6fcf97", // Mint Green
+          contrast: "#333333", // Dark Gray
+          sidebar_light: "rgba(125, 216, 226, 0.15)", // Sidebar Outline, 0.15
+          sidebar_dark: "rgba(125, 216, 226, 0.25)", // Sidebar Outline
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
