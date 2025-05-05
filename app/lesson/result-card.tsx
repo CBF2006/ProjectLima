@@ -13,20 +13,20 @@ export const ResultCard = ({ value, variant }: Props) => {
     return (
         <div className={cn(
             "rounded-2xl border-2 w-full",
-            variant === "points" && "bg-orange-400 border-orange-400",
-            variant === "hearts" && "bg-rose-500 border-rose-500",
+            variant === "points" && "bg-indigo-500 border-indigo-500",
+            variant === "hearts" && "bg-brand-accent border-brand-accent",
         )}>
             <div className={cn(
                 "p-1.5 text-white rounded-t-xl font-bold text-center uppercase text-xs",
-                variant === "points" && "bg-orange-400",
-                variant === "hearts" && "bg-rose-500",
+                variant === "points" && "bg-indigo-500",
+                variant === "hearts" && "bg-brand-accent",
             )}>
-                {variant === "hearts" ? "Hearts Left" : "Total XP"}
+                {variant === "hearts" ? "Gems Left" : "Total Jellies"}
             </div>
             <div className={cn (
                 "rounded-2xl bg-white items-center flex justify-center p-6 font-bold text-lg",
-                variant === "hearts" && "text-rose-500",
-                variant === "points" && "text-orange-400",
+                variant === "hearts" && "text-brand-accent",
+                variant === "points" && "text-indigo-500",
             )}>
                 <Image 
                     alt="Icon"

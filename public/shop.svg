@@ -1,13 +1,33 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created using Krita: https://krita.org -->
-<svg xmlns="http://www.w3.org/2000/svg" 
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-    xmlns:krita="http://krita.org/namespaces/svg/krita"
-    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-    width="5.76pt"
-    height="5.76pt"
-    viewBox="0 0 5.76 5.76">
-<defs/>
-<path id="shape0" transform="matrix(0.24 0 0 0.24 0 0)" fill="none" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" d="M0 0L24 0L24 24L0 24Z" sodipodi:nodetypes="ccccc"/><path id="shape1" transform="matrix(0.24 0 0 0.24 0.24 0.48)" fill="#22d3ee" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" d="M6 16C4.9 16 4.01 16.9 4.01 18C4.01 19.1 4.9 20 6 20C7.1 20 8 19.1 8 18C8 16.9 7.1 16 6 16ZM0 0L0 2L2 2L5.6 9.59L4.25 12.04C4.09 12.32 4 12.65 4 13C4 14.1 4.9 15 6 15L18 15L18 13L6.42 13C6.28 13 6.17 12.89 6.17 12.75L6.2 12.63L7.1 11L14.55 11C15.3 11 15.96 10.59 16.3 9.97L19.88 3.48C19.96 3.34 20 3.17 20 3C20 2.45 19.55 2 19 2L4.21 2L3.27 0ZM16 16C14.9 16 14.01 16.9 14.01 18C14.01 19.1 14.9 20 16 20C17.1 20 18 19.1 18 18C18 16.9 17.1 16 16 16Z" sodipodi:nodetypes="ccccccccccccccccccccccccccccccc"/>
+
+<svg
+   width="5.7600002pt"
+   height="5.7600002pt"
+   viewBox="0 0 5.76 5.76"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <path
+     id="shape0"
+     fill="none"
+     stroke-opacity="0"
+     stroke="#000000"
+     stroke-width="0"
+     stroke-linecap="square"
+     stroke-linejoin="bevel"
+     d="M 0,0 H 5.76 V 5.76 H 0 Z" />
+  <path
+     id="shape1"
+     fill="#22d3ee"
+     stroke-opacity="0"
+     stroke="#000000"
+     stroke-width="0"
+     stroke-linecap="square"
+     stroke-linejoin="bevel"
+     d="M 1.68,4.32 C 1.416,4.32 1.2024,4.536 1.2024,4.8 1.2024,5.064 1.416,5.28 1.68,5.28 1.944,5.28 2.16,5.064 2.16,4.8 2.16,4.536 1.944,4.32 1.68,4.32 Z M 0.24,0.48 V 0.96 H 0.72 L 1.584,2.7816 1.26,3.3696 C 1.2216,3.4368 1.2,3.516 1.2,3.6 1.2,3.864 1.416,4.08 1.68,4.08 H 4.56 V 3.6 H 1.7808 c -0.0336,0 -0.06,-0.0264 -0.06,-0.06 L 1.728,3.5112 1.944,3.12 h 1.788 c 0.18,0 0.3384,-0.0984 0.42,-0.2472 L 5.0112,1.3152 C 5.0304,1.2816 5.04,1.2408 5.04,1.2 5.04,1.068 4.932,0.96 4.8,0.96 H 1.2504 L 1.0248,0.48 Z M 4.08,4.32 C 3.816,4.32 3.6024,4.536 3.6024,4.8 3.6024,5.064 3.816,5.28 4.08,5.28 4.344,5.28 4.56,5.064 4.56,4.8 4.56,4.536 4.344,4.32 4.08,4.32 Z"
+     style="fill:#7dd8e2;fill-opacity:1" />
 </svg>
