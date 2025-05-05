@@ -1,13 +1,33 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created using Krita: https://krita.org -->
-<svg xmlns="http://www.w3.org/2000/svg" 
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-    xmlns:krita="http://krita.org/namespaces/svg/krita"
-    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-    width="5.76pt"
-    height="5.76pt"
-    viewBox="0 0 5.76 5.76">
-<defs/>
-<path id="shape0" transform="matrix(0.24 0 0 0.24 0 0)" fill="none" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" d="M0 0L24 0L24 24L0 24Z" sodipodi:nodetypes="ccccc"/><path id="shape1" transform="matrix(0.24 0 0 0.24 0.48 0.72)" fill="#22d3ee" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" d="M4.5 18L1 18C0.45 18 0 17.55 0 17L0 7C0 6.45 0.45 6 1 6L4.5 6C5.05 6 5.5 6.45 5.5 7L5.5 17C5.5 17.55 5.05 18 4.5 18ZM11.75 0L8.25 0C7.7 0 7.25 0.45 7.25 1L7.25 17C7.25 17.55 7.7 18 8.25 18L11.75 18C12.3 18 12.75 17.55 12.75 17L12.75 1C12.75 0.45 12.3 0 11.75 0ZM19 8L15.5 8C14.95 8 14.5 8.45 14.5 9L14.5 17C14.5 17.55 14.95 18 15.5 18L19 18C19.55 18 20 17.55 20 17L20 9C20 8.45 19.55 8 19 8Z" sodipodi:nodetypes="ccccccccccccccccccccccccccc"/>
+
+<svg
+   width="5.7600002pt"
+   height="5.7600002pt"
+   viewBox="0 0 5.76 5.76"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <path
+     id="shape0"
+     fill="none"
+     stroke-opacity="0"
+     stroke="#000000"
+     stroke-width="0"
+     stroke-linecap="square"
+     stroke-linejoin="bevel"
+     d="M 0,0 H 5.76 V 5.76 H 0 Z" />
+  <path
+     id="shape1"
+     fill="#22d3ee"
+     stroke-opacity="0"
+     stroke="#000000"
+     stroke-width="0"
+     stroke-linecap="square"
+     stroke-linejoin="bevel"
+     d="M 1.56,5.04 H 0.72 C 0.588,5.04 0.48,4.932 0.48,4.8 V 2.4 C 0.48,2.268 0.588,2.16 0.72,2.16 H 1.56 C 1.692,2.16 1.8,2.268 1.8,2.4 V 4.8 C 1.8,4.932 1.692,5.04 1.56,5.04 Z M 3.3,0.72 H 2.46 C 2.328,0.72 2.22,0.828 2.22,0.96 V 4.8 c 0,0.132 0.108,0.24 0.24,0.24 H 3.3 C 3.432,5.04 3.54,4.932 3.54,4.8 V 0.96 C 3.54,0.828 3.432,0.72 3.3,0.72 Z M 5.04,2.64 H 4.2 C 4.068,2.64 3.96,2.748 3.96,2.88 V 4.8 c 0,0.132 0.108,0.24 0.24,0.24 H 5.04 C 5.172,5.04 5.28,4.932 5.28,4.8 V 2.88 C 5.28,2.748 5.172,2.64 5.04,2.64 Z"
+     style="fill:#7dd8e2;fill-opacity:1" />
 </svg>
