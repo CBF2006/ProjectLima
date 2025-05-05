@@ -17,7 +17,7 @@ export const Header = () => {
                 <div className="pt-8 pl-4 pb-7 flex items-center gap-x-3">
                     <Image src="/mascot.svg" width={40} height={40} alt="Sana" />
                     <h1 className="text-2xl font-extrabold text-brand-dark tracking-wide">
-                        Mirae
+                        Nami
                     </h1>
                 </div>
                 <ClerkLoading>

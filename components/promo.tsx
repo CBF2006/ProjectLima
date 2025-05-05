@@ -18,7 +18,7 @@ export const Promo = () => {
                     </h3>
                 </div>
                 <p> {/*Please make sure to add more*/}
-                    Get unlimited hearts and more! 
+                    Get unlimited gems and more! 
                 </p>
             </div>
             <Button
