@@ -44,10 +44,10 @@ export const UserProgress = ({
                 </Button>
             </Link>
             <Link href="/shop">
-                <Button variant="ghost" className="text-rose-500">
+                <Button variant="ghost" className="text-brand-accent">
                     <Image 
                         src="heart.svg"
-                        alt="Hearts"
+                        alt="Gems"
                         className="mr-2"
                         width={22}
                         height={22}
