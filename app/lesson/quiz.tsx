@@ -224,9 +224,17 @@ export const Quiz = ({
                 percentage={percentage}
                 hasActiveSubscription={!!userSubscription?.isActive}
             />
-            <div className="flex-1">
+            <div className="flex-1 relative">
+                <Image
+                    src="/hangul.png"
+                    alt="Hangul"
+                    className="object-cover w-full h-full opacity-10 pointer-events-none z-0 pt-5"
+                    fill
+                    priority
+                >
+                </Image>
                 <div className="h-full flex items-center justify-center">
-                    <div className="lg:min-h-[350px] lg:w-[600px] w-full px-6 lg:px-0 flex flex-col gap-y-12">
+                    <div className="lg:min-h-[350px] lg:w-[600px] w-full px-6 lg:px-0 flex flex-col gap-y-12 z-10">
                         <h1 className="text-lg lg:text-3xl text-center lg:text-start font-bold text-neutral-700">
                            {title}
                         </h1>
