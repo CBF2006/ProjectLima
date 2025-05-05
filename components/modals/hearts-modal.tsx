@@ -44,10 +44,10 @@ export const HeartsModal = () => {
                         />
                     </div>
                     <DialogTitle className="text-center font-bold text-2xl">
-                        You&apos;ve run out of hearts!
+                        You&apos;ve run out of gems!
                     </DialogTitle>
                     <DialogDescription className="text-center text-base"> 
-                        Get Pro for unlimited hearts, purchase them in the store, or do practice lessons.
+                        Get Pro for unlimited gems, purchase them in the store, or do practice lessons.
                     </DialogDescription>
                 </DialogHeader>
                 <DialogFooter className="mb-4">
