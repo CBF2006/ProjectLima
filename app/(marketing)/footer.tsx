@@ -33,7 +33,7 @@ export const Footer = () => {
                     width={40}
                     className="mr-4 rounded-md" 
                 />
-                Japanese
+                Spanish
               </Button>
               <Button size="lg" variant="ghost" className="w-full">
                 <Image 
@@ -43,7 +43,7 @@ export const Footer = () => {
                     width={40}
                     className="mr-4 rounded-md" 
                 />
-                Japanese
+                French
               </Button>
             </div>
         </footer>
