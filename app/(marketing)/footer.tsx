@@ -25,6 +25,26 @@ export const Footer = () => {
                 />
                 Japanese
               </Button>
+              <Button size="lg" variant="ghost" className="w-full">
+                <Image 
+                    src="/mx.svg" 
+                    alt="Spanish" 
+                    height={32} 
+                    width={40}
+                    className="mr-4 rounded-md" 
+                />
+                Japanese
+              </Button>
+              <Button size="lg" variant="ghost" className="w-full">
+                <Image 
+                    src="/fr.svg" 
+                    alt="French" 
+                    height={32} 
+                    width={40}
+                    className="mr-4 rounded-md" 
+                />
+                Japanese
+              </Button>
             </div>
         </footer>
     );
