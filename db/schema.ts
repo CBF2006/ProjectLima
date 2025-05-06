@@ -19,6 +19,7 @@ export const units = pgTable("units", {
     courseId: integer("course_id").references(() => courses.id, { 
     onDelete: "cascade" }).notNull(),
     order: integer("order").notNull(),
+    bg: text("bg"), // Background image for the unit
 });
 
 export const unitRelations = relations(units, ({ many, one })=> ({
