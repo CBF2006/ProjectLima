@@ -34,7 +34,7 @@ export const UserProgress = ({
             <Link href="/shop">
                 <Button variant="ghost" className="text-orange-500">
                     <Image 
-                        src="streak.svg"
+                        src="streak.svg" // Add in conditional logic based on duration of streak
                         alt="Streak"
                         className="mr-2"
                         width={18}
