@@ -150,7 +150,7 @@ export const Quiz = ({
       <Image
         src="/temple.svg"
         alt="Background"
-        className="object-cover w-full h-full opacity-10 pointer-events-none z-0"
+        className="object-cover w-full h-full opacity-20 pointer-events-none z-0"
         fill
         priority
       />
