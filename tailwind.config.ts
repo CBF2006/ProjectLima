@@ -72,6 +72,11 @@ const config = {
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
+          glow: {
+            '0%': 'box-shadow: 0 0 0px rgba(125, 216, 226, 0);',
+            '50%': 'box-shadow: 0 0 20px 6px rgba(125, 216, 226, 0.6);',
+            '100%': 'box-shadow: 0 0 0px rgba(125, 216, 226, 0);',
+          },
         },
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
@@ -81,6 +86,7 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        glow: "glow 0.8s ease-in-out",
       },
     },
   },
