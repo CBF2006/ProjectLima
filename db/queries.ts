@@ -162,6 +162,7 @@ export const getLesson = cache(async (id?: number) => {
     const data = await db.query.lessons.findFirst({
         where: eq(lessons.id, lessonId),
         with: {
+            unit: true,
             challenges: {
                 orderBy: (challenges, { asc }) => [asc(challenges.order)],
                 with: {

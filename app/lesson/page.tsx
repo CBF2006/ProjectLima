@@ -34,6 +34,7 @@ const LessonPage = async () => {
             initialHearts={userProgress.hearts}
             initialPercentage={initialPercentage}
             userSubscription={userSubscription}
+            backgroundSrc={lesson.unit.bg}
         />
     );
 };

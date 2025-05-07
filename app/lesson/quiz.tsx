@@ -31,6 +31,7 @@ type Props = {
   userSubscription: typeof userSubscription.$inferSelect & {
     isActive: boolean;
   } | null;
+  backgroundSrc?: string | null;
 };
 
 export const Quiz = ({
@@ -39,6 +40,7 @@ export const Quiz = ({
   initialLessonId,
   initialLessonChallenges,
   userSubscription,
+  backgroundSrc,
 }: Props) => {
   const { open: openHeartsModal } = useHeartsModal();
   const { open: openPracticeModal } = usePracticeModal();
@@ -148,7 +150,7 @@ export const Quiz = ({
       {correctAudio}
 
       <Image
-        src={"/temple.svg"}
+        src={backgroundSrc ?? "/temple.svg"}
         alt="Background"
         className="object-cover w-full h-full opacity-20 pointer-events-none z-0"
         fill
