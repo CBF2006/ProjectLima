@@ -5,14 +5,21 @@ import Link from "next/link";
 type Props = {
     title: string;
     description: string;
+    color?: string | null;
 };
 
 export const UnitBanner = ({
     title,
     description,
+    color,
 }: Props) => {
+    const colorClass = color === "brand" ? "bg-brandFlat" : (color ?? "bg-brandFlat");
+
     return (
-        <div className="w-full rounded-xl bg-green-500 p-5 text-white flex items-center justify-between">
+        <div 
+            className={`w-full rounded-xl p-5 text-white flex items-center justify-between ${colorClass}`}
+        >
+
             <div className="space-y-2.5">
                 <h3 className="text-2xl font-bold">
                     {title}

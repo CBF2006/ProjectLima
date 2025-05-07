@@ -29,7 +29,7 @@ const main = async () => {
 
         await db.insert(schema.units).values([
             // Korean
-            { id: 1, courseId: 1, title: "Unit 1", description: "Learn Basic Hangeul", order: 1, bg: "/hangul.png" },
+            { id: 1, courseId: 1, title: "Unit 1", description: "Learn Basic Hangeul", order: 1, bg: "/hangul.png", color: "bg-red-500" },
             { id: 2, courseId: 1, title: "Unit 2", description: "Learn Complex Hangeul", order: 2 },
             { id: 3, courseId: 1, title: "Unit 3", description: "Learn Basic Grammar and Phrases", order: 3 },
             // Japanese

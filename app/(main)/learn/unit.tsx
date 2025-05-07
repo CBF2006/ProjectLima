@@ -7,6 +7,7 @@ type Props = {
     order: number;
     title: string;
     description: string;
+    color?: string | null;
     lessons: (typeof lessons.$inferSelect & {
         completed: boolean;
     })[];
@@ -21,13 +22,14 @@ export const Unit = ({
     order,
     title,
     description,
+    color,
     lessons,
     activeLesson,
     activeLessonPercentage,
 }: Props) => {
     return (
         <>
-            <UnitBanner title={title} description={description}/>
+            <UnitBanner title={title} description={description} color={color}/>
             <div className="flex items-center flex-col relative">
                 {lessons.map((lesson, index) => {
                     const isCurrent = lesson.id === activeLesson?.id; // TODO: Remove true later
@@ -42,6 +44,7 @@ export const Unit = ({
                         current={isCurrent}
                         locked={isLocked}
                         percentage={activeLessonPercentage}
+                        color={color}
                     />
                 )
                 })}

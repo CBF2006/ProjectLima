@@ -8,6 +8,10 @@ const config = {
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
 	],
+  safelist: [ // All Unit Colors need to be added here
+    "bg-red-500",
+    "bg-brandFlat",
+  ],  
   prefix: "",
   theme: {
     container: {
@@ -62,6 +66,7 @@ const config = {
           sidebar_light: "rgba(125, 216, 226, 0.15)", // Sidebar Outline, 0.15
           sidebar_dark: "rgba(125, 216, 226, 0.25)", // Sidebar Outline
         },
+        brandFlat: "#7DD8E2", // Flat Color
       },
       borderRadius: {
         lg: "var(--radius)",

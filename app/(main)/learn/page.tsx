@@ -76,6 +76,7 @@ const LearnPage = async () => {
                             lessons={unit.lessons}
                             activeLesson={courseProgress.activeLesson}
                             activeLessonPercentage={lessonPercentage}
+                            color={unit.color}
                         />
                     </div>
                 ))}
