@@ -30,8 +30,8 @@ const main = async () => {
         await db.insert(schema.units).values([
             // Korean
             { id: 1, courseId: 1, title: "Unit 1", description: "Learn Basic Hangeul", order: 1, bg: "/hangul.png", color: "bg-red-500" },
-            { id: 2, courseId: 1, title: "Unit 2", description: "Learn Complex Hangeul", order: 2 },
-            { id: 3, courseId: 1, title: "Unit 3", description: "Learn Basic Grammar and Phrases", order: 3 },
+            { id: 2, courseId: 1, title: "Unit 2", description: "Learn Complex Hangeul", order: 2, bg: "/hangul.png", color: "bg-blue-500" },
+            { id: 3, courseId: 1, title: "Unit 3", description: "Learn Basic Grammar and Phrases", order: 3, bg: "/hangul.png", color: "bg-pink-500" },
             // Japanese
             { id: 4, courseId: 2, title: "Unit 1", description: "Learn Hiragana", order: 1, bg: "temple.svg" },
         ]);

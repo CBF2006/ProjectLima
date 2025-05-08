@@ -64,6 +64,28 @@ export const LessonButton = ({
     const colorClass = color === "brand" ? "bg-brandFlat" : (color ?? "bg-brandFlat");
     const strokeColor = colorMap[color ?? "bg-brandFlat"] ?? "#7DD8E2";
 
+    const generateColorClasses = (bgClass: string) => {
+        const match = bgClass.match(/^bg-([a-z]+)-(\d{3})$/);
+        if (!match) {
+          return {
+            base: bgClass,
+            hover: "",
+            border: "",
+          };
+        }
+      
+        const [, color, shade] = match;
+        return {
+          base: `bg-${color}-${shade}`,
+          hover: `hover:bg-${color}-${+shade + 100}/90`,
+          border: `border-${color}-600`,
+        };
+      };
+
+    const { base, hover, border } = generateColorClasses(colorClass);
+
+    console.log({ base, hover, border });
+
     return (
         <Link 
         href={href} 
@@ -100,13 +122,15 @@ export const LessonButton = ({
                             }}
                         >
                             <Button
-  size="rounded"
-  variant={locked ? "locked" : "secondary"}
-  className={cn(
-    "h-[70px] w-[70px] border-b-8",
-    !locked && color // Only apply color if not locked
-  )}
->
+                                size="rounded"
+                                variant={locked ? "locked" : "lesson"}
+                                className={cn(
+                                    "h-[70px] w-[70px] border-b-8",
+                                    !locked && base,
+                                    !locked && hover,
+                                    !locked && border
+                                )}
+                            >
 
                                 <Icon 
                                     className={cn (

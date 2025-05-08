@@ -9,8 +9,20 @@ const config = {
     './src/**/*.{ts,tsx}',
 	],
   safelist: [ // All Unit Colors need to be added here
+    // Static Classes
     "bg-red-500",
+    "bg-blue-500",
+    "bg-green-500",
+    "bg-yellow-500",
+    "bg-purple-500",
+    "bg-pink-500",
+    "bg-orange-500",
     "bg-brandFlat",
+    
+    // Dynamic Classes
+    {
+      pattern: /(bg|hover:bg|border)-[a-z]+-\d{3}(\/\d{2})?/,
+    },  
   ],  
   prefix: "",
   theme: {
