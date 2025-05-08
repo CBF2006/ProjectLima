@@ -53,7 +53,16 @@ export const LessonButton = ({
 
     const href = isCompleted ? `/lesson/${id}` : "/lesson";
 
+    const colorMap: Record<string, string> = {
+        "bg-red-500": "#EF4444",
+        "bg-green-500": "#22C55E",
+        "bg-yellow-500": "#FBBF24",
+        "bg-brandFlat": "#7DD8E2",
+        "bg-brand": "#7DD8E2",
+      };
+
     const colorClass = color === "brand" ? "bg-brandFlat" : (color ?? "bg-brandFlat");
+    const strokeColor = colorMap[color ?? "bg-brandFlat"] ?? "#7DD8E2";
 
     return (
         <Link 
@@ -72,7 +81,7 @@ export const LessonButton = ({
                     <div className="h-[102px] w-[102px] relative">
                         <div 
                             className="absolute -top-6 left-2.5 px-3 py-2.5 border-2 font-bold uppercase bg-white rounded-xl animate-bounce tracking-wide z-10"
-                            style={{color: colorClass}}
+                            style={{color: strokeColor}}
                             >
                             Start
                             <div style={{color: color ?? "brand"}}
@@ -83,18 +92,22 @@ export const LessonButton = ({
                             value={Number.isNaN(percentage) ? 0 : percentage}
                             styles={{
                                 path: {
-                                    stroke: colorClass,
+                                    stroke: strokeColor,
                                 },
                                 trail: {
-                                    stroke: "#e5e7eb"
+                                    stroke: "#e5e7eb",
                                 },
                             }}
                         >
                             <Button
-                                size="rounded"
-                                variant={locked ? "locked" : "secondary"}
-                                className="h-[70px] w-[70px] border-b-8"
-                            >
+  size="rounded"
+  variant={locked ? "locked" : "secondary"}
+  className={cn(
+    "h-[70px] w-[70px] border-b-8",
+    !locked && color // Only apply color if not locked
+  )}
+>
+
                                 <Icon 
                                     className={cn (
                                         "h-10 w-10",
