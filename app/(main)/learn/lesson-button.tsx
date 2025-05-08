@@ -53,6 +53,8 @@ export const LessonButton = ({
 
     const href = isCompleted ? `/lesson/${id}` : "/lesson";
 
+    const colorClass = color === "brand" ? "bg-brandFlat" : (color ?? "bg-brandFlat");
+
     return (
         <Link 
         href={href} 
@@ -70,7 +72,7 @@ export const LessonButton = ({
                     <div className="h-[102px] w-[102px] relative">
                         <div 
                             className="absolute -top-6 left-2.5 px-3 py-2.5 border-2 font-bold uppercase bg-white rounded-xl animate-bounce tracking-wide z-10"
-                            style={{color: color ?? "brand"}}
+                            style={{color: colorClass}}
                             >
                             Start
                             <div style={{color: color ?? "brand"}}
@@ -81,7 +83,7 @@ export const LessonButton = ({
                             value={Number.isNaN(percentage) ? 0 : percentage}
                             styles={{
                                 path: {
-                                    stroke: color ?? "4ade80",
+                                    stroke: colorClass,
                                 },
                                 trail: {
                                     stroke: "#e5e7eb"
