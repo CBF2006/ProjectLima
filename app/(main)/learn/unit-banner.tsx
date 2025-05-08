@@ -15,6 +15,29 @@ export const UnitBanner = ({
 }: Props) => {
     const colorClass = color === "brand" ? "bg-brandFlat" : (color ?? "bg-brandFlat");
 
+    const generateColorClasses = (bgClass: string) => {
+        const match = bgClass.match(/^bg-([a-z]+)-(\d{3})$/);
+        if (!match) {
+          return {
+            base: bgClass,
+            hover: "",
+            border: "",
+          };
+        }
+      
+        const [, color, shade] = match;
+        const hoverShade = Math.min(+shade + 100, 900);
+      
+        return {
+          base: `bg-${color}-${shade}`,
+          hover: `hover:bg-${color}-${hoverShade}`,
+          border: `border-${color}-600`,
+        };
+      };
+      
+    const { base, hover, border } = generateColorClasses(colorClass);
+      
+
     return (
         <div 
             className={`w-full rounded-xl p-5 text-white flex items-center justify-between ${colorClass}`}
@@ -31,8 +54,8 @@ export const UnitBanner = ({
             <Link href="/lesson">
                 <Button
                 size="lg"
-                variant="secondary"
-                className="hidden xl:flex border-2 border-b-4 active:border-b-2"
+                variant="lesson"
+                className={"hidden xl:flex border-2 border-b-4 active:border-b-2 ${base} ${hover} ${border}"} // Hover not working
                 >
                     <NotebookText className="mr-2" />
                     Continue
