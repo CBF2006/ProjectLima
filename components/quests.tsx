@@ -28,7 +28,7 @@ export const Quests = ({ points }: Props) => {
             </div>
             <ul className="w-full space-y-4">
                 {quests.map((quest) => {
-                    const progress = (points / quest.value) * 100;
+                    const progress = Math.round((points / quest.value) * 100);
 
                     return (
                         <div

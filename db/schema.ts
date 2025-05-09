@@ -1,4 +1,5 @@
 import { relations } from "drizzle-orm";
+import { date } from "drizzle-orm/mysql-core";
 import { boolean, integer, pgEnum, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
 
 export const courses = pgTable("courses", {
@@ -130,6 +131,40 @@ export const userSubscription = pgTable("user_subscription", {
     stripePriceId: text("stripe_price_id").notNull(),
     stripeCurrentPeriodEnd: timestamp("stripe_current_period_end").notNull(),
 });
+
+export const userStreaks = pgTable("user_streaks", {
+    userId: text("user_id").primaryKey().references(() => userProgress.userId, {
+        onDelete: "cascade",
+    }),
+    currentStreak: integer("current_streak").notNull().default(0),
+    longestStreak: integer("longest_streak").notNull().default(0),
+    lastUpdated: timestamp("last_updated", { withTimezone: false }).notNull(),
+    freezesAvailable: integer("freezes_available").notNull().default(0),
+});
+
+export const DailyActivity = pgTable("daily_activity", {
+    id: serial("id").primaryKey(),
+    userId: text("user_id").notNull().references(() => userProgress.userId, {
+        onDelete: "cascade",
+    }),
+    date: timestamp("date", { withTimezone: false }).notNull(),
+    lessonCompleted: boolean("lesson_completed").notNull().default(false),
+    practiceCompleted: boolean("practice_completed").notNull().default(false),
+});
+
+export const userStreaksRelations = relations(userStreaks, ({ one }) => ({
+    user: one(userProgress, {
+        fields: [userStreaks.userId],
+        references: [userProgress.userId],
+    }),
+}));
+
+export const dailyActivityRelations = relations(DailyActivity, ({ one }) => ({
+    user: one(userProgress, {
+        fields: [DailyActivity.userId],
+        references: [userProgress.userId],
+    }),
+}));
 
 // npm run db:push --> Updates schema.ts
 // npm run db:seed --> Updates seed.ts
