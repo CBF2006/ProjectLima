@@ -24,7 +24,7 @@ export const logDailyActivity = async (
   if (!existing) {
     await db.insert(DailyActivity).values({
       userId,
-      date: new Date(today),
+      date: today,
       lessonCompleted: type === "lesson",
       practiceCompleted: type === "practice",
     });
