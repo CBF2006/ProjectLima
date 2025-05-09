@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import Image from "next/image";
 import Confetti from "react-confetti";
 import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
+import { useState, useTransition, useEffect } from "react";
 import { useAudio, useWindowSize, useMount } from "react-use";
 
 import { reduceHearts } from "@/actions/user-progress";
@@ -20,6 +20,9 @@ import { ResultCard } from "./result-card";
 import { QuestionBubble } from "./question_bubble";
 import { ListenButton } from "./listen_button";
 
+import { updateLessonStreak } from "@/actions/streak";
+import { useAuth } from "@clerk/nextjs";
+
 type Props = {
   initialPercentage: number;
   initialHearts: number;
@@ -32,6 +35,7 @@ type Props = {
     isActive: boolean;
   } | null;
   backgroundSrc?: string | null;
+  type: "lesson" | "practice";
 };
 
 export const Quiz = ({
@@ -41,6 +45,7 @@ export const Quiz = ({
   initialLessonChallenges,
   userSubscription,
   backgroundSrc,
+  type,
 }: Props) => {
   const { open: openHeartsModal } = useHeartsModal();
   const { open: openPracticeModal } = usePracticeModal();
@@ -50,6 +55,8 @@ export const Quiz = ({
       openPracticeModal();
     }
   });
+
+  const { userId } = useAuth();
 
   const { width, height } = useWindowSize();
   const router = useRouter();
@@ -73,6 +80,15 @@ export const Quiz = ({
 
   const challenge = challenges[activeIndex];
   const options = challenge?.challengeOptions ?? [];
+
+  const [streakLogged, setStreakLogged] = useState(false);
+
+  useEffect(() => {
+    if (!challenge && typeof userId === "string" && !streakLogged) {
+      updateLessonStreak(userId);
+      setStreakLogged(true);
+    }
+  }, [challenge, userId, streakLogged]);
 
   const onNext = () => setActiveIndex((current) => current + 1);
 

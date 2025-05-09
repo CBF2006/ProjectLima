@@ -166,5 +166,6 @@ export const dailyActivityRelations = relations(DailyActivity, ({ one }) => ({
     }),
 }));
 
+
 // npm run db:push --> Updates schema.ts
 // npm run db:seed --> Updates seed.ts
