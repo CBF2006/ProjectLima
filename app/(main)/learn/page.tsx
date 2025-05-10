@@ -10,12 +10,14 @@ import {
     getLessonPercentage, 
     getUnits, 
     getUserProgress, 
-    getUserSubscription
+    getUserSubscription,
+    getUserStreak
 } from "@/db/queries";
 
 import { Header } from "./header";
 import { Unit } from "./unit";
 import { Quests } from "@/components/quests";
+import { get } from "http";
 
 // Sidebar Icon Hex: #22d3ee
 
@@ -25,19 +27,22 @@ const LearnPage = async () => {
     const lessonPercentageData = getLessonPercentage();
     const unitsData = getUnits();
     const userSubscriptionData = getUserSubscription();
+    const userStreak = getUserStreak();
 
     const [
         userProgress,
         units,
         courseProgress,
         lessonPercentage,
-        userSubscription
+        userSubscription,
+        streak
     ] = await Promise.all([
         userProgressData,
         unitsData,
         courseProgressData,
         lessonPercentageData,
         userSubscriptionData,
+        userStreak
     ]);
 
     if (!userProgress || !userProgress.activeCourse) {
@@ -58,6 +63,7 @@ const LearnPage = async () => {
                     hearts={userProgress.hearts}
                     points={userProgress.points}
                     hasActiveSubscription={isPro}
+                    currentStreak={streak?.currentStreak ?? 0}
                 />
                 {!isPro && (
                     <Promo />

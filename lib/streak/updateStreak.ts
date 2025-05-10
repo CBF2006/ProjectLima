@@ -6,7 +6,7 @@ import { DailyActivity, userStreaks } from "@/db/schema";
 type DailyActivityType = InferSelectModel<typeof DailyActivity>;
 type UserStreakType = InferSelectModel<typeof userStreaks>;
 
-export const updateStreak = async (userId: string) => {
+export const updateStreak = async (userId: string, type: "lesson" | "practice") => {
   const today = new Date();
   const todayStr = new Date(today.toDateString()); // YYYY-MM-DD
 
@@ -22,11 +22,24 @@ export const updateStreak = async (userId: string) => {
       and(eq(DailyActivity.userId, userId), eq(DailyActivity.date, todayStr)),  
     );
 
-  // If they didn’t do anything today, don’t update
-  const didCompleteToday =
-    activity?.lessonCompleted || activity?.practiceCompleted;
-
-  if (!didCompleteToday) return;
+  // If no activity exists yet, insert one
+  if (!activity) {
+    await db.insert(DailyActivity).values({
+      userId,
+      date: todayStr,
+      lessonCompleted: type === "lesson",
+      practiceCompleted: type === "practice",
+    });
+  } else {
+    // Otherwise, update existing record, preserving any previously completed status
+    await db
+      .update(DailyActivity)
+      .set({
+        lessonCompleted: activity.lessonCompleted || type === "lesson",
+        practiceCompleted: activity.practiceCompleted || type === "practice",
+      })
+      .where(eq(DailyActivity.id, activity.id));
+  }
 
   // Get current streak info
   const [streak]: UserStreakType[] = await db
@@ -37,12 +50,13 @@ export const updateStreak = async (userId: string) => {
   if (!streak) return;
 
   const lastUpdatedStr = new Date(streak.lastUpdated.toDateString()); // YYYY-MM-DD
-  if (lastUpdatedStr.getTime() === todayStr.getTime()) return;
+  if (lastUpdatedStr.getTime() === todayStr.getTime()) return; // Already updated today
 
   let currentStreak = 1;
   let longestStreak = Math.max(streak.currentStreak, streak.longestStreak);
 
   if (lastUpdatedStr.getTime() === yesterdayStr.getTime()) {
+    // If last update was yesterday, increment streak
     currentStreak = streak.currentStreak + 1;
     longestStreak = Math.max(currentStreak, longestStreak);
   } else if (streak.freezesAvailable > 0) {

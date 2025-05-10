@@ -11,6 +11,7 @@ export const logDailyActivity = async (
 ) => {
   const today = new Date(new Date().toDateString()); // YYYY-MM-DD
 
+  // Check if there's already an entry for today
   const [existing]: DailyActivityType[] = await db
     .select()
     .from(DailyActivity)
@@ -21,6 +22,7 @@ export const logDailyActivity = async (
       ),
     );
 
+  // If no entry exists, insert a new one
   if (!existing) {
     await db.insert(DailyActivity).values({
       userId,
@@ -29,6 +31,7 @@ export const logDailyActivity = async (
       practiceCompleted: type === "practice",
     });
   } else {
+    // If entry exists, update it (preserving any already-completed status)
     await db
       .update(DailyActivity)
       .set({
@@ -38,5 +41,6 @@ export const logDailyActivity = async (
       .where(eq(DailyActivity.id, existing.id));
   }
 
-  await updateStreak(userId);
+  // Trigger streak update based on the type
+  await updateStreak(userId, type);
 };

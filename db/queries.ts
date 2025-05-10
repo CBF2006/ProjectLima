@@ -9,7 +9,8 @@ import {
     lessons, 
     units, 
     userProgress, 
-    userSubscription
+    userSubscription,
+    userStreaks
 } from "@/db/schema";
 
 export const getUserProgress = cache(async () => {
@@ -27,6 +28,19 @@ export const getUserProgress = cache(async () => {
     });
 
     return data;
+});
+
+export const getUserStreak = cache(async () => {
+    const { userId } = await auth();
+
+    if (!userId) return null;
+
+    const [streak] = await db
+        .select()
+        .from(userStreaks)
+        .where(eq(userStreaks.userId, userId));
+
+    return streak || null;
 });
 
 export const getUnits = cache(async () => {
@@ -234,8 +248,6 @@ export const getUserSubscription = cache(async () => {
     };
 });
 
-// **We have not handled refunds in this tutorial, only cancelling the subcription**
-
 export const getTopTenUsers = cache(async () => {
     const { userId } = await auth();
 
@@ -245,7 +257,7 @@ export const getTopTenUsers = cache(async () => {
 
     const data = await db.query.userProgress.findMany({
         orderBy: (userProgress, { desc }) => [desc(userProgress.points)],
-        limit: 10, // Controls the number of people displayed. May want to remove limit? Idk. Maybe add leagues later so not everyone is loaded at once
+        limit: 10,
         columns: {
             userId: true,
             userName: true,

@@ -84,8 +84,6 @@ export const LessonButton = ({
 
     const { base, hover, border } = generateColorClasses(colorClass);
 
-    console.log({ base, hover, border });
-
     return (
         <Link 
         href={href} 
@@ -106,6 +104,7 @@ export const LessonButton = ({
                             style={{color: strokeColor}}
                             >
                             Start
+                            {/* (Continue is not centered but logic works) percentage > 0 ? "Continue" : "Start" */} 
                             <div style={{color: color ?? "brand"}}
                                 className="absolute left-1/2 -bottom-2 w-0 h-0 border-x-8 border-x-transparent border-t-8 transform -translate-x-1/2"
                             />

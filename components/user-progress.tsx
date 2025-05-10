@@ -5,18 +5,22 @@ import { InfinityIcon } from "lucide-react";
 import { courses } from "@/db/schema";
 import { Button } from "./ui/button";
 
+import { cn } from "@/lib/utils";
+
 type Props = {
     activeCourse: typeof courses.$inferSelect; // TODO: Replace with DB types
     hearts: number;
     points: number;
     hasActiveSubscription: boolean;
+    currentStreak: number;
 };
 
 export const UserProgress = ({
     activeCourse, 
     points, 
     hearts, 
-    hasActiveSubscription
+    hasActiveSubscription,
+    currentStreak,
  }: Props) => {
     return (
         <div className="flex items-center justify-between gap-x-2 w-full">
@@ -32,15 +36,25 @@ export const UserProgress = ({
                 </Button>
             </Link>
             <Link href="/shop">
-                <Button variant="ghost" className="text-orange-500">
+                <Button 
+                    variant="ghost" 
+                    className={cn(
+                        currentStreak > 0 && "text-orange-500",
+                        "text-neutral-500"
+                    )}
+                >
                     <Image 
-                        src="streak.svg" // Add in conditional logic based on duration of streak
+                        src={
+                            currentStreak > 0
+                                ? "streak.svg"
+                                : "no-streak.svg"
+                        }
                         alt="Streak"
                         className="mr-2"
                         width={18}
                         height={18}
                     />
-                    1
+                    {currentStreak}
                 </Button>
             </Link>
             <Link href="/shop">
