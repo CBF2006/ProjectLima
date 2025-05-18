@@ -39,8 +39,7 @@ export const UserProgress = ({
                 <Button 
                     variant="ghost" 
                     className={cn(
-                        currentStreak > 0 && "text-orange-500",
-                        "text-neutral-500"
+                        currentStreak > 0 ? "text-orange-500" : "text-neutral-500"
                     )}
                 >
                     <Image 

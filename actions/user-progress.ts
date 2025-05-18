@@ -8,7 +8,7 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import db from "@/db/drizzle";
 import { POINTS_TO_REFILL } from "@/constants";
 import { getCourseById, getUserProgress, getUserSubscription } from "@/db/queries";
-import { challengeProgress, challenges, userProgress } from "@/db/schema";
+import { challengeProgress, challenges, userProgress, userStreaks } from "@/db/schema";
 
 export const upsertUserProgress = async (courseId: number) => {
     const { userId } = await auth();
@@ -48,6 +48,21 @@ export const upsertUserProgress = async (courseId: number) => {
             userName: user.firstName || "User",
             userImageSrc: user.imageUrl || "sana.svg",
         });
+
+        const [existingStreak] = await db
+            .select()
+            .from(userStreaks)
+            .where(eq(userStreaks.userId, userId));
+
+        if (!existingStreak) {
+            await db.insert(userStreaks).values({
+                userId,
+                currentStreak: 0,
+                longestStreak: 0,
+                lastUpdated: new Date(0),
+                freezesAvailable: 1,
+            });
+        }
 
         revalidatePath("/courses");
         revalidatePath("/learn");
