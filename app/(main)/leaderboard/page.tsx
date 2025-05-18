@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-import { getTopTenUsers, getUserProgress, getUserSubscription } from "@/db/queries";
+import { getTopTenUsers, getUserProgress, getUserSubscription, getUserStreak } from "@/db/queries";
 import { FeedWrapper } from "@/components/feed-wrapper";
 import { UserProgress } from "@/components/user-progress";
 import { StickyWrapper } from "@/components/sticky-wrapper";
@@ -14,15 +14,18 @@ const LeaderboardPage = async () => {
     const userProgressData = getUserProgress();
     const userSubscriptionData = getUserSubscription();
     const leaderboardData = getTopTenUsers();
+    const userStreak = getUserStreak();
 
     const [
         userProgress,
         userSubsciption,
         leaderboard,
+        streak,
     ] = await Promise.all([
         userProgressData,
         userSubscriptionData,
         leaderboardData,
+        userStreak,
     ]);
 
     if (!userProgress || !userProgress.activeCourse) {
@@ -39,6 +42,7 @@ const LeaderboardPage = async () => {
                     hearts={userProgress.hearts}
                     points={userProgress.points}
                     hasActiveSubscription={isPro}
+                    currentStreak={streak?.currentStreak ?? 0}
                 />
                 {!isPro && (
                     <Promo />

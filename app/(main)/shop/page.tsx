@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-import { getUserProgress, getUserSubscription } from "@/db/queries";
+import { getUserProgress, getUserSubscription, getUserStreak } from "@/db/queries";
 import { FeedWrapper } from "@/components/feed-wrapper";
 import { UserProgress } from "@/components/user-progress";
 import { StickyWrapper } from "@/components/sticky-wrapper";
@@ -13,13 +13,16 @@ import { Quests } from "@/components/quests";
 const ShopPage = async () => {
     const userProgressData = getUserProgress();
     const userSubscriptionData = getUserSubscription();
+    const userStreak = getUserStreak();
 
     const [
         userProgress,
         userSubsciption,
+        streak,
     ] = await Promise.all([
         userProgressData,
-        userSubscriptionData
+        userSubscriptionData,
+        userStreak,
     ]);
 
     if (!userProgress || !userProgress.activeCourse) {
@@ -36,6 +39,7 @@ const ShopPage = async () => {
                     hearts={userProgress.hearts}
                     points={userProgress.points}
                     hasActiveSubscription={isPro}
+                    currentStreak={streak?.currentStreak ?? 0}
                 />
                 {!isPro && (
                     <Promo />
