@@ -109,10 +109,14 @@ export const Quiz = ({
       return;
     }
 
-    const correctOption = options.find((option) => option.correct);
-    if (!correctOption) return;
+    // If it's a MATCH type, we handle it with matchId logic
+  if (challenge.type === "MATCH") {
+    const selected = options.find((opt) => opt.id === selectedOption);
+    const isMatchValid = selected && options.some(
+      (opt) => opt.matchId && opt.matchId === selected.matchId && opt.id !== selected.id
+    );
 
-    if (correctOption.id === selectedOption) {
+    if (isMatchValid) {
       startTransition(() => {
         upsertChallengeProgress(challenge.id).then((response) => {
           if (response?.error === "hearts") return openHeartsModal();
@@ -132,34 +136,39 @@ export const Quiz = ({
         }).catch(() => toast.error("Something went wrong. Please try again."));
       });
     }
-  };
 
-  if (!challenge) {
-    return (
-      <>
-        {finishAudio}
-        <Confetti width={width} height={height} recycle={false} numberOfPieces={500} tweenDuration={10000} />
-        <div className="flex flex-col gap-y-4 lg:gap-y-8 max-w-lg mx-auto text-center items-center justify-center h-full">
-          <Image src="/finish.svg" alt="Finish" className="hidden lg:block" height={100} width={100} />
-          <Image src="/finish.svg" alt="Finish" className="block lg:hidden" height={50} width={50} />
-          <h1 className="text-xl lg:text-3xl font-bold text-neutral-700">
-            Great job! <br /> You&apos;ve completed the lesson.
-          </h1>
-          <div className="flex items-center gap-x-4 w-full">
-            <ResultCard variant="points" value={challenges.length * 10} />
-            <ResultCard variant="hearts" value={hearts} />
-          </div>
-        </div>
-        <Footer lessonId={lessonId} status="completed" onCheck={() => router.push("/learn")} />
-      </>
-    );
+    return;
   }
+
+
+    if (!challenge) {
+      return (
+        <>
+          {finishAudio}
+          <Confetti width={width} height={height} recycle={false} numberOfPieces={500} tweenDuration={10000} />
+          <div className="flex flex-col gap-y-4 lg:gap-y-8 max-w-lg mx-auto text-center items-center justify-center h-full">
+            <Image src="/finish.svg" alt="Finish" className="hidden lg:block" height={100} width={100} />
+            <Image src="/finish.svg" alt="Finish" className="block lg:hidden" height={50} width={50} />
+            <h1 className="text-xl lg:text-3xl font-bold text-neutral-700">
+              Great job! <br /> You&apos;ve completed the lesson.
+            </h1>
+            <div className="flex items-center gap-x-4 w-full">
+              <ResultCard variant="points" value={challenges.length * 10} />
+              <ResultCard variant="hearts" value={hearts} />
+            </div>
+          </div>
+          <Footer lessonId={lessonId} status="completed" onCheck={() => router.push("/learn")} />
+        </>
+      );
+    }
 
   const title =
     challenge.type === "ASSIST"
       ? "Select the correct meaning"
-      : challenge.type === "LISTEN_SELECT" || challenge.type === "LISTEN_ASSIST"
+    : challenge.type === "LISTEN_SELECT" || challenge.type === "LISTEN_ASSIST"
       ? "What do you hear?"
+    : challenge.type === "MATCH"
+        ? "Match the words"
       : challenge.question;
 
   return (
@@ -212,11 +221,13 @@ export const Quiz = ({
           </div>
         </div>
 
-        <Footer
-          disabled={pending || !selectedOption}
-          status={status}
-          onCheck={onContinue}
-        />
+        {(challenge.type !== "MATCH" || status === "correct") && (
+          <Footer
+            disabled={pending || !selectedOption}
+            status={status}
+            onCheck={onContinue}
+          />
+        )}
       </div>
     </div>
   );
