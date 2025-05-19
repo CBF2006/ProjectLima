@@ -43,6 +43,32 @@ export const getUserStreak = cache(async () => {
     return streak || null;
 });
 
+export const getLongestStreak = cache(async () => {
+    const { userId } = await auth();
+
+    if (!userId) return null;
+
+    const [streak] = await db
+        .select({ longestStreak: userStreaks.longestStreak })
+        .from(userStreaks)
+        .where(eq(userStreaks.userId, userId));
+
+    return streak?.longestStreak ?? 0;
+});
+
+export const getStreakFreezes = cache(async () => {
+    const { userId } = await auth();
+
+    if (!userId) return null;
+
+    const [streak] = await db
+        .select({ freezesAvailable: userStreaks.freezesAvailable })
+        .from(userStreaks)
+        .where(eq(userStreaks.userId, userId));
+
+    return streak?.freezesAvailable ?? 0;
+});
+
 export const getUnits = cache(async () => {
     const { userId } = await auth();
     const userProgress = await getUserProgress();

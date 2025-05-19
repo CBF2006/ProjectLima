@@ -1,6 +1,6 @@
 import Profile from "@/components/profile";
 import { redirect } from "next/navigation";
-import { getUserProgress, getUserStreak, getUserSubscription } from "@/db/queries";
+import { getLongestStreak, getStreakFreezes, getUserProgress, getUserStreak, getUserSubscription } from "@/db/queries";
 import { FeedWrapper } from "@/components/feed-wrapper";
 import { UserProgress } from "@/components/user-progress";
 import { StickyWrapper } from "@/components/sticky-wrapper";
@@ -14,8 +14,18 @@ const ProfilePage = async () => {
   const userProgress = await getUserProgress();
   const userSubscription = await getUserSubscription();
   const userStreak = getUserStreak();
+  const longestStreak = getLongestStreak();
+  const freezesAvailable = getStreakFreezes();
 
-  const [streak] = await Promise.all([userStreak]);
+  const [
+    streak,
+    longest,
+    freezes,
+  ] = await Promise.all([
+    userStreak,
+    longestStreak,
+    freezesAvailable,
+  ]);
 
   if (!userProgress || !userProgress.activeCourse) {
     redirect("/courses");
@@ -32,6 +42,8 @@ const ProfilePage = async () => {
           points={userProgress.points}
           hasActiveSubscription={isPro}
           currentStreak={streak?.currentStreak ?? 0}
+          longestStreak={longest ?? 0}
+          freezesAvailable={freezes ?? 0}
         />
         {!isPro && <Promo />}
         <Quests points={userProgress.points} />

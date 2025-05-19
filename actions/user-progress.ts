@@ -60,7 +60,7 @@ export const upsertUserProgress = async (courseId: number) => {
                 currentStreak: 0,
                 longestStreak: 0,
                 lastUpdated: new Date(0),
-                freezesAvailable: 1,
+                freezesAvailable: 0,
             });
         }
 

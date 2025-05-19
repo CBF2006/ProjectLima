@@ -6,6 +6,7 @@ import { courses } from "@/db/schema";
 import { Button } from "./ui/button";
 
 import { cn } from "@/lib/utils";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 
 type Props = {
     activeCourse: typeof courses.$inferSelect; // TODO: Replace with DB types
@@ -13,6 +14,8 @@ type Props = {
     points: number;
     hasActiveSubscription: boolean;
     currentStreak: number;
+    longestStreak: number;
+    freezesAvailable: number;
 };
 
 export const UserProgress = ({
@@ -21,6 +24,8 @@ export const UserProgress = ({
     hearts, 
     hasActiveSubscription,
     currentStreak,
+    longestStreak,
+    freezesAvailable,
  }: Props) => {
     return (
         <div className="flex items-center justify-between gap-x-2 w-full">
@@ -35,27 +40,65 @@ export const UserProgress = ({
                     />
                 </Button>
             </Link>
-            <Link href="/shop">
-                <Button 
-                    variant="ghost" 
-                    className={cn(
-                        currentStreak > 0 ? "text-orange-500" : "text-neutral-500"
-                    )}
-                >
-                    <Image 
-                        src={
-                            currentStreak > 0
-                                ? "streak.svg"
-                                : "no-streak.svg"
-                        }
-                        alt="Streak"
-                        className="mr-2"
-                        width={18}
-                        height={18}
-                    />
-                    {currentStreak}
-                </Button>
-            </Link>
+            <Popover>
+                <PopoverTrigger>
+                    <Button 
+                        variant="ghost" 
+                        className={cn(
+                            currentStreak > 0 ? "text-orange-500" : "text-neutral-500"
+                        )}
+                    >
+                        <Image 
+                            src={
+                                currentStreak > 0
+                                    ? "streak.svg"
+                                    : "no-streak.svg"
+                            }
+                            alt="Streak"
+                            className="mr-2"
+                            width={18}
+                            height={18}
+                        />
+                        {currentStreak}
+                    </Button>
+                </PopoverTrigger>
+
+                <PopoverContent className="w-64">
+                    <div className="flex flex-col space-y-4">
+                        <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-2">
+                            <Image src="/streak.svg" alt="Current Streak" width={24} height={24} />
+                            <span className="text-sm font-semibold">Current Streak</span>
+                        </div>
+                        <span className="font-bold text-orange-500">{currentStreak}</span>
+                        </div>
+
+                        <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-2">
+                            <Image src="/streak.svg" alt="Longest Streak" width={24} height={24} />
+                            <span className="text-sm text-muted-foreground font-semibold">Longest Streak</span>
+                        </div>
+                        <span className="font-bold text-orange-500">{longestStreak}</span>
+                        </div>
+
+                        <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-2">
+                            <Image src="/freeze.svg" alt="Streak Freezes" width={24} height={24} />
+                            <span className="text-sm text-muted-foreground font-semibold">Freezes Available</span>
+                        </div>
+                        <span className="font-bold text-blue-500">{freezesAvailable}</span>
+                        </div>
+                        <div className="w-full">
+                            <Link href={"/shop"}>
+                                <Button variant={"ghost"}>
+                                    Get More Freezes
+                                </Button>
+                            </Link>
+                        </div>
+                    </div>
+                </PopoverContent>
+
+            </Popover>
             <Link href="/shop">
                 <Button variant="ghost" className="text-indigo-500">
                     <Image 

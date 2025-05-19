@@ -11,7 +11,9 @@ import {
     getUnits, 
     getUserProgress, 
     getUserSubscription,
-    getUserStreak
+    getUserStreak,
+    getLongestStreak,
+    getStreakFreezes
 } from "@/db/queries";
 
 import { Header } from "./header";
@@ -28,6 +30,8 @@ const LearnPage = async () => {
     const unitsData = getUnits();
     const userSubscriptionData = getUserSubscription();
     const userStreak = getUserStreak();
+    const longestStreak = getLongestStreak();
+    const freezesAvailable = getStreakFreezes();
 
     const [
         userProgress,
@@ -35,14 +39,18 @@ const LearnPage = async () => {
         courseProgress,
         lessonPercentage,
         userSubscription,
-        streak
+        streak,
+        longest,
+        freezes,
     ] = await Promise.all([
         userProgressData,
         unitsData,
         courseProgressData,
         lessonPercentageData,
         userSubscriptionData,
-        userStreak
+        userStreak,
+        longestStreak,
+        freezesAvailable,
     ]);
 
     if (!userProgress || !userProgress.activeCourse) {
@@ -64,6 +72,8 @@ const LearnPage = async () => {
                     points={userProgress.points}
                     hasActiveSubscription={isPro}
                     currentStreak={streak?.currentStreak ?? 0}
+                    longestStreak={longest ?? 0}
+                    freezesAvailable={freezes ?? 0}
                 />
                 {!isPro && (
                     <Promo />
