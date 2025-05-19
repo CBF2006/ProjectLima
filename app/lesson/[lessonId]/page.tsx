@@ -42,6 +42,7 @@ const LessonIdPage = async ({
             initialHearts={userProgress.hearts}
             initialPercentage={initialPercentage}
             userSubscription={userSubscription}
+            type={initialPercentage === 100 ? "practice" : "lesson"}
         />
     );
 };

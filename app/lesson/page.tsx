@@ -28,8 +28,6 @@ const LessonPage = async () => {
         .filter((challenge) => challenge.completed)
         .length / lesson.challenges.length * 100;
 
-    const type = initialPercentage === 100 ? "practice" : "lesson";
-
     return (
         <Quiz 
             initialLessonId={lesson.id}
@@ -38,7 +36,7 @@ const LessonPage = async () => {
             initialPercentage={initialPercentage}
             userSubscription={userSubscription}
             backgroundSrc={lesson.unit.bg}
-            type={type}
+            type={initialPercentage === 100 ? "practice" : "lesson"}
         />
     );
 };
