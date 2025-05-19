@@ -36,6 +36,7 @@ type Props = {
   } | null;
   backgroundSrc?: string | null;
   type: "lesson" | "practice";
+  currentStreak?: number;
 };
 
 export const Quiz = ({
@@ -46,6 +47,7 @@ export const Quiz = ({
   userSubscription,
   backgroundSrc,
   type,
+  currentStreak,
 }: Props) => {
   const { open: openHeartsModal } = useHeartsModal();
   const { open: openPracticeModal } = usePracticeModal();
