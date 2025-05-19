@@ -26,6 +26,7 @@ const main = async () => {
         await db.insert(schema.courses).values([
             { id: 1, title: "Korean", imageSrc: "/kr.svg" },
             { id: 2, title: "Japanese", imageSrc: "/jp.svg" },
+            { id: 3, title: "Spanish", imageSrc: "/mx.svg" },
         ]);
 
         await db.insert(schema.units).values([
@@ -83,6 +84,10 @@ const main = async () => {
             { id: 63, lessonId: 2, type: "LISTEN_SELECT", order: 6, question: '', audioSrc: "/kr_ba.mp3" },
             { id: 64, lessonId: 2, type: "LISTEN_SELECT", order: 7, question: '', audioSrc: "/kr_sa.mp3" },
             { id: 65, lessonId: 2, type: "LISTEN_ASSIST", order: 8, question: '', audioSrc: "/kr_sada.mp3" },
+        ]);
+
+        await db.insert(schema.challenges).values([ // KR - Lesson 3
+            { id: 66, lessonId: 3, type: "MATCH", order: 1, question: '', audioSrc: "" },
         ]);
 
         await db.insert(schema.challenges).values([ // JP - Unit 1 Lesson 1
@@ -223,6 +228,17 @@ const main = async () => {
             { challengeId: 65, imageSrc: "", correct: true, text: "사다", audioSrc: "/kr_sada.mp3" },
             { challengeId: 65, imageSrc: "", correct: false, text: "가다", audioSrc: "/kr_gada.mp3" },
           ]);
+
+        await db.insert(schema.challengeOptions).values([
+            // Korean Lesson 3 - MATCH (id: 66)
+            { challengeId: 66, text: "사과", isPrompt: true, matchId: "apple", correct: true, audioSrc: "/kr_apple.mp3" },
+            { challengeId: 66, text: "Apple", isPrompt: false, matchId: "apple", correct: true, audioSrc: "/apple.mp3" },
+
+            { challengeId: 66, text: "우유", isPrompt: true, matchId: "milk", correct: true, audioSrc: "/kr_milk.mp3" },
+            { challengeId: 66, text: "Milk", isPrompt: false, matchId: "milk", correct: true, audioSrc: "/milk.mp3" },
+        ]);
+
+
           
 
         await db.insert(schema.challengeOptions).values([ // JP - Unit 1 Lesson 1

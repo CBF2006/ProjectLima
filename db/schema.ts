@@ -49,7 +49,7 @@ export const lessonsRelations = relations(lessons, ({ one, many }) =>
     challenges: many(challenges),
 }));
 
-export const challengesEnum = pgEnum("type", ["SELECT", "ASSIST", "LISTEN_SELECT", "LISTEN_ASSIST"]); // Add Voice/Listen here
+export const challengesEnum = pgEnum("type", ["SELECT", "ASSIST", "LISTEN_SELECT", "LISTEN_ASSIST", "MATCH"]); // Add Voice/Listen here
 
 export const challenges = pgTable("challenges", {
     id: serial("id").primaryKey(),
@@ -79,6 +79,8 @@ export const challengeOptions = pgTable("challenge_options", {
     correct: boolean("correct").notNull(),
     imageSrc: text("image_src"),
     audioSrc: text("audio_src"), // notNull() would require this field and break if not present
+    isPrompt: boolean("is_prompt").notNull().default(false),
+    matchId: text("match_id"),
 });
 
 export const challengeOptionsRelations = relations(challengeOptions, ({ one }) =>
