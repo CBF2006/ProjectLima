@@ -41,7 +41,7 @@ export const UserProgress = ({
                 </Button>
             </Link>
             <Popover>
-                <PopoverTrigger>
+                <PopoverTrigger asChild>
                     <Button 
                         variant="ghost" 
                         className={cn(
@@ -67,18 +67,28 @@ export const UserProgress = ({
                     <div className="flex flex-col space-y-4">
                         <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-2">
-                            <Image src="/streak.svg" alt="Current Streak" width={24} height={24} />
+                            <Image src={currentStreak > 0 ? "/streak.svg" : "/no-streak.svg"} alt="Current Streak" width={24} height={24} />
                             <span className="text-sm font-semibold">Current Streak</span>
                         </div>
-                        <span className="font-bold text-orange-500">{currentStreak}</span>
+                        <span className={cn(
+                            "font-bold",
+                            currentStreak > 0 ? "text-orange-500" : "text-neutral-500"
+                        )}>
+                            {currentStreak}
+                        </span>
                         </div>
 
                         <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-2">
-                            <Image src="/streak.svg" alt="Longest Streak" width={24} height={24} />
+                            <Image src={longestStreak > 0 ? "/streak.svg" : "/no-streak.svg"} alt="Longest Streak" width={24} height={24} />
                             <span className="text-sm text-muted-foreground font-semibold">Longest Streak</span>
                         </div>
-                        <span className="font-bold text-orange-500">{longestStreak}</span>
+                        <span className={cn(
+                            "font-bold",
+                            longestStreak > 0 ? "text-orange-500" : "text-neutral-500"
+                        )}>
+                            {longestStreak}
+                        </span>
                         </div>
 
                         <div className="flex items-center justify-between">

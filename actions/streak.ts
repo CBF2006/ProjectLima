@@ -9,9 +9,9 @@ import { logDailyActivity } from "@/lib/streak/logDailyActivity";
 
 const STREAK_FREEZE_COST = 300;
 
-export const updateLessonStreak = async (userId: string) => {
+export const updateLessonStreak = async (userId: string, type: "lesson" | "practice") => {
   try {
-    await logDailyActivity(userId, "lesson");
+    await logDailyActivity(userId, type);
   } catch (error) {
     console.error("Failed to update streak:", error);
   }

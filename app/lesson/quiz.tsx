@@ -85,7 +85,7 @@ export const Quiz = ({
 
   useEffect(() => {
     if (!challenge && typeof userId === "string" && !streakLogged) {
-      updateLessonStreak(userId);
+      updateLessonStreak(userId, type);
       setStreakLogged(true);
     }
   }, [challenge, userId, streakLogged]);
