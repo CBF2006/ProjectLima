@@ -10,8 +10,8 @@ import "./globals.css";
 const font = Nunito({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Project Lima",
-  description: "A Language Learning Platform Developed by CBF",
+  title: "Nami",
+  description: "Real Conversations, Real Results",
 };
 
 export default function RootLayout({
