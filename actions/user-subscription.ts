@@ -29,7 +29,7 @@ export const createStripeUrl = async () => {
 
     const stripeSession = await stripe.checkout.sessions.create({
         mode: "subscription",
-        payment_method_types: ["card", "paypal"], // Add whatever you want here (with the autocomplete)
+        payment_method_types: ["card"], // Add whatever you want here (with the autocomplete)
         customer_email: user.emailAddresses[0].emailAddress,
         line_items: [
             {
@@ -37,8 +37,8 @@ export const createStripeUrl = async () => {
                 price_data: {
                     currency: "USD",
                     product_data: {
-                        name: "Lima Pro",
-                        description: "Unlimited Hearts", // Change later once you add more pro benefits 
+                        name: "Nami Pro",
+                        description: "Unlimited Gems", // Change later once you add more pro benefits 
                     },
                     unit_amount: 500, // $5 USD // $5.00 // 500 cents // OHHHH bc yen and won don't have cents so you write it like this OHHHHHHHHHHHH
                     recurring: {

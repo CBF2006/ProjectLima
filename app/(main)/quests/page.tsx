@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { redirect } from "next/navigation";
 
-import { getUserProgress, getUserSubscription } from "@/db/queries";
+import { getUserProgress, getUserSubscription, getUserStreak, getLongestStreak, getStreakFreezes } from "@/db/queries";
 import { FeedWrapper } from "@/components/feed-wrapper";
 import { UserProgress } from "@/components/user-progress";
 import { StickyWrapper } from "@/components/sticky-wrapper";
@@ -13,13 +13,22 @@ import { quests } from "@/constants";
 const QuestsPage = async () => {
     const userProgressData = getUserProgress();
     const userSubscriptionData = getUserSubscription();
+    const userStreak = getUserStreak();
+    const longestStreak = getLongestStreak();
+    const freezesAvailable = getStreakFreezes();
 
     const [
         userProgress,
         userSubsciption,
+        streak,
+        longest,
+        freezes,
     ] = await Promise.all([
         userProgressData,
         userSubscriptionData,
+        userStreak,
+        longestStreak,
+        freezesAvailable,
     ]);
 
     if (!userProgress || !userProgress.activeCourse) {
@@ -36,6 +45,9 @@ const QuestsPage = async () => {
                     hearts={userProgress.hearts}
                     points={userProgress.points}
                     hasActiveSubscription={isPro}
+                    currentStreak={streak?.currentStreak ?? 0}
+                    longestStreak={longest ?? 0}
+                    freezesAvailable={freezes ?? 0}
                 />
                 {!isPro && (
                     <Promo />

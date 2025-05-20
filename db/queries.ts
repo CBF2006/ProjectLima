@@ -9,7 +9,8 @@ import {
     lessons, 
     units, 
     userProgress, 
-    userSubscription
+    userSubscription,
+    userStreaks
 } from "@/db/schema";
 
 export const getUserProgress = cache(async () => {
@@ -27,6 +28,45 @@ export const getUserProgress = cache(async () => {
     });
 
     return data;
+});
+
+export const getUserStreak = cache(async () => {
+    const { userId } = await auth();
+
+    if (!userId) return null;
+
+    const [streak] = await db
+        .select()
+        .from(userStreaks)
+        .where(eq(userStreaks.userId, userId));
+
+    return streak || null;
+});
+
+export const getLongestStreak = cache(async () => {
+    const { userId } = await auth();
+
+    if (!userId) return null;
+
+    const [streak] = await db
+        .select({ longestStreak: userStreaks.longestStreak })
+        .from(userStreaks)
+        .where(eq(userStreaks.userId, userId));
+
+    return streak?.longestStreak ?? 0;
+});
+
+export const getStreakFreezes = cache(async () => {
+    const { userId } = await auth();
+
+    if (!userId) return null;
+
+    const [streak] = await db
+        .select({ freezesAvailable: userStreaks.freezesAvailable })
+        .from(userStreaks)
+        .where(eq(userStreaks.userId, userId));
+
+    return streak?.freezesAvailable ?? 0;
 });
 
 export const getUnits = cache(async () => {
@@ -162,6 +202,7 @@ export const getLesson = cache(async (id?: number) => {
     const data = await db.query.lessons.findFirst({
         where: eq(lessons.id, lessonId),
         with: {
+            unit: true,
             challenges: {
                 orderBy: (challenges, { asc }) => [asc(challenges.order)],
                 with: {
@@ -233,8 +274,6 @@ export const getUserSubscription = cache(async () => {
     };
 });
 
-// **We have not handled refunds in this tutorial, only cancelling the subcription**
-
 export const getTopTenUsers = cache(async () => {
     const { userId } = await auth();
 
@@ -244,7 +283,7 @@ export const getTopTenUsers = cache(async () => {
 
     const data = await db.query.userProgress.findMany({
         orderBy: (userProgress, { desc }) => [desc(userProgress.points)],
-        limit: 10, // Controls the number of people displayed. May want to remove limit? Idk. Maybe add leagues later so not everyone is loaded at once
+        limit: 10,
         columns: {
             userId: true,
             userName: true,

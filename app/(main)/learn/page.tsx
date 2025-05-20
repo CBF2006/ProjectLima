@@ -10,12 +10,16 @@ import {
     getLessonPercentage, 
     getUnits, 
     getUserProgress, 
-    getUserSubscription
+    getUserSubscription,
+    getUserStreak,
+    getLongestStreak,
+    getStreakFreezes
 } from "@/db/queries";
 
 import { Header } from "./header";
 import { Unit } from "./unit";
 import { Quests } from "@/components/quests";
+import { get } from "http";
 
 // Sidebar Icon Hex: #22d3ee
 
@@ -25,19 +29,28 @@ const LearnPage = async () => {
     const lessonPercentageData = getLessonPercentage();
     const unitsData = getUnits();
     const userSubscriptionData = getUserSubscription();
+    const userStreak = getUserStreak();
+    const longestStreak = getLongestStreak();
+    const freezesAvailable = getStreakFreezes();
 
     const [
         userProgress,
         units,
         courseProgress,
         lessonPercentage,
-        userSubscription
+        userSubscription,
+        streak,
+        longest,
+        freezes,
     ] = await Promise.all([
         userProgressData,
         unitsData,
         courseProgressData,
         lessonPercentageData,
         userSubscriptionData,
+        userStreak,
+        longestStreak,
+        freezesAvailable,
     ]);
 
     if (!userProgress || !userProgress.activeCourse) {
@@ -58,6 +71,9 @@ const LearnPage = async () => {
                     hearts={userProgress.hearts}
                     points={userProgress.points}
                     hasActiveSubscription={isPro}
+                    currentStreak={streak?.currentStreak ?? 0}
+                    longestStreak={longest ?? 0}
+                    freezesAvailable={freezes ?? 0}
                 />
                 {!isPro && (
                     <Promo />
@@ -76,6 +92,7 @@ const LearnPage = async () => {
                             lessons={unit.lessons}
                             activeLesson={courseProgress.activeLesson}
                             activeLessonPercentage={lessonPercentage}
+                            color={unit.color}
                         />
                     </div>
                 ))}

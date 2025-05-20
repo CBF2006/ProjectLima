@@ -21,19 +21,22 @@ const main = async () => {
         await db.delete(schema.userProgress);
         await db.delete(schema.challengeProgress);
         await db.delete(schema.userSubscription);
+        await db.delete(schema.userStreaks);
 
         await db.insert(schema.courses).values([
             { id: 1, title: "Korean", imageSrc: "/kr.svg" },
             { id: 2, title: "Japanese", imageSrc: "/jp.svg" },
+            { id: 3, title: "Spanish", imageSrc: "/mx.svg" },
         ]);
 
         await db.insert(schema.units).values([
             // Korean
-            { id: 1, courseId: 1, title: "Unit 1", description: "Learn Basic Hangeul", order: 1 },
-            { id: 2, courseId: 1, title: "Unit 2", description: "Learn Complex Hangeul", order: 2 },
-            { id: 3, courseId: 1, title: "Unit 3", description: "Learn Basic Grammar and Phrases", order: 3 },
+            { id: 1, courseId: 1, title: "Unit 1", description: "Learn Basic Hangeul", order: 1, bg: "/hangul.png", color: "bg-red-500" },
+            { id: 2, courseId: 1, title: "Unit 2", description: "Learn Complex Hangeul", order: 2, bg: "/hangul.png", color: "bg-blue-500" },
+            { id: 3, courseId: 1, title: "Unit 3", description: "Learn Basic Grammar and Phrases", order: 3, bg: "/hangul.png", color: "bg-pink-500" },
             // Japanese
-            { id: 4, courseId: 2, title: "Unit 1", description: "Learn Hiragana", order: 1 },
+            { id: 4, courseId: 2, title: "Unit 1", description: "Learn Hiragana", order: 1, bg: "temple.svg", color: "bg-red-500" },
+            { id: 5, courseId: 2, title: "Unit 2", description: "Learn Basic Greetings and Phrases", order: 2, bg: "town.svg", color: "bg-pink-500" },
         ]);
 
         await db.insert(schema.lessons).values([
@@ -81,6 +84,10 @@ const main = async () => {
             { id: 63, lessonId: 2, type: "LISTEN_SELECT", order: 6, question: '', audioSrc: "/kr_ba.mp3" },
             { id: 64, lessonId: 2, type: "LISTEN_SELECT", order: 7, question: '', audioSrc: "/kr_sa.mp3" },
             { id: 65, lessonId: 2, type: "LISTEN_ASSIST", order: 8, question: '', audioSrc: "/kr_sada.mp3" },
+        ]);
+
+        await db.insert(schema.challenges).values([ // KR - Lesson 3
+            { id: 66, lessonId: 3, type: "MATCH", order: 1, question: '', audioSrc: "" },
         ]);
 
         await db.insert(schema.challenges).values([ // JP - Unit 1 Lesson 1
@@ -221,6 +228,17 @@ const main = async () => {
             { challengeId: 65, imageSrc: "", correct: true, text: "사다", audioSrc: "/kr_sada.mp3" },
             { challengeId: 65, imageSrc: "", correct: false, text: "가다", audioSrc: "/kr_gada.mp3" },
           ]);
+
+        await db.insert(schema.challengeOptions).values([
+            // Korean Lesson 3 - MATCH (id: 66)
+            { challengeId: 66, text: "사과", isPrompt: true, matchId: "apple", correct: true, audioSrc: "/kr_apple.mp3" },
+            { challengeId: 66, text: "Apple", isPrompt: false, matchId: "apple", correct: true, audioSrc: "/apple.mp3" },
+
+            { challengeId: 66, text: "우유", isPrompt: true, matchId: "milk", correct: true, audioSrc: "/kr_milk.mp3" },
+            { challengeId: 66, text: "Milk", isPrompt: false, matchId: "milk", correct: true, audioSrc: "/milk.mp3" },
+        ]);
+
+
           
 
         await db.insert(schema.challengeOptions).values([ // JP - Unit 1 Lesson 1

@@ -1,4 +1,5 @@
 import { relations } from "drizzle-orm";
+import { date } from "drizzle-orm/mysql-core";
 import { boolean, integer, pgEnum, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
 
 export const courses = pgTable("courses", {
@@ -19,6 +20,8 @@ export const units = pgTable("units", {
     courseId: integer("course_id").references(() => courses.id, { 
     onDelete: "cascade" }).notNull(),
     order: integer("order").notNull(),
+    bg: text("bg"), // Background image for the unit
+    color: text("color").default("brand") // Color for the unit
 });
 
 export const unitRelations = relations(units, ({ many, one })=> ({
@@ -46,7 +49,7 @@ export const lessonsRelations = relations(lessons, ({ one, many }) =>
     challenges: many(challenges),
 }));
 
-export const challengesEnum = pgEnum("type", ["SELECT", "ASSIST", "LISTEN_SELECT", "LISTEN_ASSIST"]); // Add Voice/Listen here
+export const challengesEnum = pgEnum("type", ["SELECT", "ASSIST", "LISTEN_SELECT", "LISTEN_ASSIST", "MATCH"]); // Add Voice/Listen here
 
 export const challenges = pgTable("challenges", {
     id: serial("id").primaryKey(),
@@ -76,6 +79,8 @@ export const challengeOptions = pgTable("challenge_options", {
     correct: boolean("correct").notNull(),
     imageSrc: text("image_src"),
     audioSrc: text("audio_src"), // notNull() would require this field and break if not present
+    isPrompt: boolean("is_prompt").notNull().default(false),
+    matchId: text("match_id"),
 });
 
 export const challengeOptionsRelations = relations(challengeOptions, ({ one }) =>
@@ -128,6 +133,41 @@ export const userSubscription = pgTable("user_subscription", {
     stripePriceId: text("stripe_price_id").notNull(),
     stripeCurrentPeriodEnd: timestamp("stripe_current_period_end").notNull(),
 });
+
+export const userStreaks = pgTable("user_streaks", {
+    userId: text("user_id").primaryKey().references(() => userProgress.userId, {
+        onDelete: "cascade",
+    }),
+    currentStreak: integer("current_streak").notNull().default(0),
+    longestStreak: integer("longest_streak").notNull().default(0),
+    lastUpdated: timestamp("last_updated", { withTimezone: false }).notNull(),
+    freezesAvailable: integer("freezes_available").notNull().default(0),
+});
+
+export const DailyActivity = pgTable("daily_activity", {
+    id: serial("id").primaryKey(),
+    userId: text("user_id").notNull().references(() => userProgress.userId, {
+        onDelete: "cascade",
+    }),
+    date: timestamp("date", { withTimezone: false }).notNull(),
+    lessonCompleted: boolean("lesson_completed").notNull().default(false),
+    practiceCompleted: boolean("practice_completed").notNull().default(false),
+});
+
+export const userStreaksRelations = relations(userStreaks, ({ one }) => ({
+    user: one(userProgress, {
+        fields: [userStreaks.userId],
+        references: [userProgress.userId],
+    }),
+}));
+
+export const dailyActivityRelations = relations(DailyActivity, ({ one }) => ({
+    user: one(userProgress, {
+        fields: [DailyActivity.userId],
+        references: [userProgress.userId],
+    }),
+}));
+
 
 // npm run db:push --> Updates schema.ts
 // npm run db:seed --> Updates seed.ts

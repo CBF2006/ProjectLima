@@ -16,6 +16,7 @@ type Props = {
     locked?: boolean;
     current?: boolean;
     percentage: number;
+    color?: string | null;
 };
 
 export const LessonButton = ({
@@ -24,7 +25,8 @@ export const LessonButton = ({
     totalCount,
     locked,
     current,
-    percentage
+    percentage,
+    color,
 }: Props) => {
     const cycleLength = 8;
     const cycleIndex = index % cycleLength;
@@ -51,6 +53,37 @@ export const LessonButton = ({
 
     const href = isCompleted ? `/lesson/${id}` : "/lesson";
 
+    const colorMap: Record<string, string> = {
+        "bg-red-500": "#EF4444",
+        "bg-green-500": "#22C55E",
+        "bg-yellow-500": "#FBBF24",
+        "bg-brandFlat": "#7DD8E2",
+        "bg-brand": "#7DD8E2",
+      };
+
+    const colorClass = color === "brand" ? "bg-brandFlat" : (color ?? "bg-brandFlat");
+    const strokeColor = colorMap[color ?? "bg-brandFlat"] ?? "#7DD8E2";
+
+    const generateColorClasses = (bgClass: string) => {
+        const match = bgClass.match(/^bg-([a-z]+)-(\d{3})$/);
+        if (!match) {
+          return {
+            base: bgClass,
+            hover: "",
+            border: "",
+          };
+        }
+      
+        const [, color, shade] = match;
+        return {
+          base: `bg-${color}-${shade}`,
+          hover: `hover:bg-${color}-${+shade + 100}/90`,
+          border: `border-${color}-600`,
+        };
+      };
+
+    const { base, hover, border } = generateColorClasses(colorClass);
+
     return (
         <Link 
         href={href} 
@@ -66,9 +99,13 @@ export const LessonButton = ({
             >
                 {current ? (
                     <div className="h-[102px] w-[102px] relative">
-                        <div className="absolute -top-6 left-2.5 px-3 py-2.5 border-2 font-bold uppercase text-green-500 bg-white rounded-xl animate-bounce tracking-wide z-10">
+                        <div 
+                            className="absolute -top-6 left-2.5 px-3 py-2.5 border-2 font-bold uppercase bg-white rounded-xl animate-bounce tracking-wide z-10"
+                            style={{color: strokeColor}}
+                            >
                             Start
-                            <div 
+                            {/* (Continue is not centered but logic works) percentage > 0 ? "Continue" : "Start" */} 
+                            <div style={{color: color ?? "brand"}}
                                 className="absolute left-1/2 -bottom-2 w-0 h-0 border-x-8 border-x-transparent border-t-8 transform -translate-x-1/2"
                             />
                         </div>
@@ -76,18 +113,24 @@ export const LessonButton = ({
                             value={Number.isNaN(percentage) ? 0 : percentage}
                             styles={{
                                 path: {
-                                    stroke: "#4ade80",
+                                    stroke: strokeColor,
                                 },
                                 trail: {
-                                    stroke: "#e5e7eb"
+                                    stroke: "#e5e7eb",
                                 },
                             }}
                         >
                             <Button
                                 size="rounded"
-                                variant={locked ? "locked" : "secondary"}
-                                className="h-[70px] w-[70px] border-b-8"
+                                variant={locked ? "locked" : "lesson"}
+                                className={cn(
+                                    "h-[70px] w-[70px] border-b-8",
+                                    !locked && base,
+                                    !locked && hover,
+                                    !locked && border
+                                )}
                             >
+
                                 <Icon 
                                     className={cn (
                                         "h-10 w-10",
@@ -101,10 +144,15 @@ export const LessonButton = ({
                     </div>  
                 ) : (
                     <Button
-                            size="rounded"
-                            variant={locked ? "locked" : "secondary"}
-                            className="h-[70px] w-[70px] border-b-8"
-                        >
+                        size="rounded"
+                        variant={locked ? "locked" : "lesson"}
+                        className={cn(
+                            "h-[70px] w-[70px] border-b-8",
+                            !locked && base,
+                            !locked && hover,
+                            !locked && border
+                        )}
+                    >
                             <Icon 
                                 className={cn (
                                     "h-10 w-10",

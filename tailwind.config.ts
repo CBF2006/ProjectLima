@@ -8,6 +8,22 @@ const config = {
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
 	],
+  safelist: [ // All Unit Colors need to be added here
+    // Static Classes
+    "bg-red-500",
+    "bg-blue-500",
+    "bg-green-500",
+    "bg-yellow-500",
+    "bg-purple-500",
+    "bg-pink-500",
+    "bg-orange-500",
+    "bg-brandFlat",
+    
+    // Dynamic Classes
+    {
+      pattern: /(bg|hover:bg|border)-[a-z]+-\d{3}(\/\d{2})?/,
+    },  
+  ],  
   prefix: "",
   theme: {
     container: {
@@ -62,6 +78,7 @@ const config = {
           sidebar_light: "rgba(125, 216, 226, 0.15)", // Sidebar Outline, 0.15
           sidebar_dark: "rgba(125, 216, 226, 0.25)", // Sidebar Outline
         },
+        brandFlat: "#7DD8E2", // Flat Color
       },
       borderRadius: {
         lg: "var(--radius)",
