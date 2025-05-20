@@ -29,10 +29,28 @@ export const QuestionBubble = ({ question, fillText }: Props) => {
         height={40}
         className="block lg:hidden"
       />
-      <div
-        className="relative py-2 px-4 border-2 rounded-xl text-sm lg:text-base font-semibold text-neutral-800 border-neutral-500 max-w-[300px]"
-        dangerouslySetInnerHTML={{ __html: rendered }}
-      />
+      <div className="relative py-2 px-4 border-2 rounded-xl text-sm lg:text-base font-semibold text-neutral-800 border-neutral-500 max-w-[300px]">
+  <span className="whitespace-pre-wrap">
+    {question.split("{blank}").map((part, i, arr) => (
+      <span key={i}>
+        {part}
+        {i < arr.length - 1 && (
+          <span
+  className={`inline-block align-baseline transition-all duration-300 ease-out ${
+    fillText
+      ? "text-green-600 animate-fade-in" // ✅ no underline when correct
+      : "min-w-[3rem] border-b-2 border-neutral-500"
+  }`}
+>
+  {fillText || "\u00A0\u00A0\u00A0"}
+</span>
+
+        )}
+      </span>
+    ))}
+  </span>
+</div>
+
     </div>
   );
 };
