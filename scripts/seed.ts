@@ -88,6 +88,8 @@ const main = async () => {
 
         await db.insert(schema.challenges).values([ // KR - Lesson 3
             { id: 66, lessonId: 3, type: "MATCH", order: 1, question: '', audioSrc: "" },
+            { id: 67, lessonId: 3, type: "TRANSLATE", order: 2, question: '이름이 뭐에요?', audioSrc: "" },
+            { id: 68, lessonId: 3, type: "FILL", order: 3, question: '{blank} 배고파요', audioSrc: "" },
         ]);
 
         await db.insert(schema.challenges).values([ // JP - Unit 1 Lesson 1
@@ -236,6 +238,14 @@ const main = async () => {
 
             { challengeId: 66, text: "우유", isPrompt: true, matchId: "milk", correct: true, audioSrc: "/kr_milk.mp3" },
             { challengeId: 66, text: "Milk", isPrompt: false, matchId: "milk", correct: true, audioSrc: "/milk.mp3" },
+
+            { challengeId: 67, imageSrc: "", correct: false, text: "How are you?", audioSrc: "" },
+            { challengeId: 67, imageSrc: "", correct: false, text: "Where are you from?", audioSrc: "" },
+            { challengeId: 67, imageSrc: "", correct: true, text: "What's your name?", audioSrc: "" },
+
+            { challengeId: 68, imageSrc: "", correct: false, text: "나는", audioSrc: "" },
+            { challengeId: 68, imageSrc: "", correct: true, text: "제가", audioSrc: "" },
+            { challengeId: 68, imageSrc: "", correct: false, text: "너를", audioSrc: "" },
         ]);
 
 

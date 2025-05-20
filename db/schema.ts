@@ -49,7 +49,7 @@ export const lessonsRelations = relations(lessons, ({ one, many }) =>
     challenges: many(challenges),
 }));
 
-export const challengesEnum = pgEnum("type", ["SELECT", "ASSIST", "LISTEN_SELECT", "LISTEN_ASSIST", "MATCH"]); // Add Voice/Listen here
+export const challengesEnum = pgEnum("type", ["SELECT", "ASSIST", "LISTEN_SELECT", "LISTEN_ASSIST", "MATCH", "TRANSLATE", "FILL"]); // Add Voice/Listen here
 
 export const challenges = pgTable("challenges", {
     id: serial("id").primaryKey(),
