@@ -22,6 +22,7 @@ const layoutByType: Record<string, string> = {
   SELECT: "grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
   LISTEN_SELECT: "grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
   MATCH: "grid-cols-2", // handled manually below
+  TRANSLATE: "grid-cols-1"
 };
 
 export const Challenge = ({
