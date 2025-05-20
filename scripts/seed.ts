@@ -238,9 +238,9 @@ const main = async () => {
             { challengeId: 66, text: "우유", isPrompt: true, matchId: "milk", correct: true, audioSrc: "/kr_milk.mp3" },
             { challengeId: 66, text: "Milk", isPrompt: false, matchId: "milk", correct: true, audioSrc: "/milk.mp3" },
 
-            { challengeId: 67, imageSrc: "", correct: true, text: "How are you?", audioSrc: "/jp_a.mp3" },
-            { challengeId: 67, imageSrc: "", correct: false, text: "Where are you from?", audioSrc: "/jp_i.mp3" },
-            { challengeId: 67, imageSrc: "", correct: false, text: "What's your name?", audioSrc: "/jp_o.mp3" },
+            { challengeId: 67, imageSrc: "", correct: false, text: "How are you?", audioSrc: "" },
+            { challengeId: 67, imageSrc: "", correct: false, text: "Where are you from?", audioSrc: "" },
+            { challengeId: 67, imageSrc: "", correct: true, text: "What's your name?", audioSrc: "" },
         ]);
 
 
