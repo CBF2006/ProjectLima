@@ -236,7 +236,7 @@ const main = async () => {
             { challengeId: 66, text: "Apple", isPrompt: false, matchId: "apple", correct: true, audioSrc: "/apple.mp3" },
 
             { challengeId: 66, text: "우유", isPrompt: true, matchId: "milk", correct: true, audioSrc: "/kr_milk.mp3" },
-            { challengeId: 66, text: "Milk", isPrompt: false, matchId: "milk", correct: true, audioSrc: "/milk.mp3" },\
+            { challengeId: 66, text: "Milk", isPrompt: false, matchId: "milk", correct: true, audioSrc: "/milk.mp3" },
 
             { challengeId: 7, imageSrc: "/jp_a.svg", correct: true, text: "How are you?", audioSrc: "/jp_a.mp3" },
             { challengeId: 7, imageSrc: "/jp_i.svg", correct: false, text: "Where are you from?", audioSrc: "/jp_i.mp3" },
