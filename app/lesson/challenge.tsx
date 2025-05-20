@@ -106,7 +106,9 @@ export const Challenge = ({
                 matched={isMatched}
                 incorrect={isIncorrect}
                 onClick={() => {
-                  if (!isMatched && !cardsDisabled) setSelectedPromptId(item.id);
+                  if (!isMatched && !cardsDisabled) {
+                    setSelectedPromptId((prev) => (prev === item.id ? null : item.id));
+                  }
                 }}
               />
             );
