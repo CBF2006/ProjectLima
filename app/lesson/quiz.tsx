@@ -186,6 +186,8 @@ export const Quiz = ({
       ? "What do you hear?"
       : challenge.type === "MATCH"
       ? "Match the words"
+      : challenge.type === "TRANSLATE"
+      ? "Select the correct translation"
       : challenge.question;
 
   return (
