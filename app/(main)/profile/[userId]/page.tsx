@@ -8,9 +8,7 @@ import { Promo } from "@/components/promo";
 import { Quests } from "@/components/quests";
 import Image from "next/image";
 
-
-
-const ProfilePage = async () => {
+const ProfilePage = async ({ params }: { params: { userId: string } }) => {
   const userProgress = await getUserProgress();
   const userSubscription = await getUserSubscription();
   const userStreak = getUserStreak();

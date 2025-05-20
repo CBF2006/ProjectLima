@@ -15,7 +15,7 @@ const Profile = () => {
       <div className="flex items-center space-x-4">
         <img
           src={user.imageUrl}
-          alt="User profile"
+          alt="User"
           className="w-16 h-16 rounded-full"
         />
         <div>

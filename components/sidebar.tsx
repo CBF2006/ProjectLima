@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -5,6 +7,7 @@ import {
     ClerkLoading,
     ClerkLoaded,
     UserButton,
+    useUser,
 } from "@clerk/nextjs";
 
 import { Loader } from "lucide-react";
@@ -18,6 +21,9 @@ type Props = {
 };
 
 export const Sidebar = ({ className }: Props) => {
+    const { user } = useUser();
+    const userId = user?.id;
+
     return (
         <div className={cn(
             "flex h-full lg:w-[256px] lg:fixed left-0 top-0 px-4 border-r-2 flex-col",
@@ -64,7 +70,7 @@ export const Sidebar = ({ className }: Props) => {
 
                 <SidebarItem 
                 label="Profile" 
-                href="/profile"
+                href={userId ? `/profile/${userId}` : "/profile"}
                 iconSrc="/profile.svg"
                 />
                 

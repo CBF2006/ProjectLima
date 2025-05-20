@@ -29,9 +29,7 @@ export const UserProgress = ({
  }: Props) => {
     return (
         <div className="flex items-center justify-between gap-x-2 w-full">
-            {/* <Link href="/courses"> */}
-            <Popover>
-                <PopoverTrigger>
+            <Link href="/courses">
                 <Button variant="ghost">
                     <Image 
                         src={activeCourse.imageSrc}
@@ -41,14 +39,7 @@ export const UserProgress = ({
                         height={32}
                     />
                 </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-64">
-                    <div>
-                        Helloooooo
-                    </div>
-                </PopoverContent>
-            </Popover>
-            {/* </Link> */}
+            </Link>
             <Popover>
                 <PopoverTrigger asChild>
                     <Button 
@@ -60,8 +51,8 @@ export const UserProgress = ({
                         <Image 
                             src={
                                 currentStreak > 0
-                                    ? "streak.svg"
-                                    : "no-streak.svg"
+                                    ? "/streak.svg"
+                                    : "/no-streak.svg"
                             }
                             alt="Streak"
                             className="mr-2"
@@ -121,7 +112,7 @@ export const UserProgress = ({
             <Link href="/shop">
                 <Button variant="ghost" className="text-indigo-500">
                     <Image 
-                        src="points.svg"
+                        src="/points.svg"
                         alt="Jellies"
                         className="mr-2"
                         width={28}
@@ -133,7 +124,7 @@ export const UserProgress = ({
             <Link href="/shop">
                 <Button variant="ghost" className="text-brand-accent">
                     <Image 
-                        src="heart.svg"
+                        src="/heart.svg"
                         alt="Gems"
                         className="mr-2"
                         width={22}

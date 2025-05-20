@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-import { getTopTenUsers, getUserProgress, getUserSubscription, getUserStreak, getLongestStreak, getStreakFreezes } from "@/db/queries";
+import { getTopUsers, getUserProgress, getUserSubscription, getUserStreak, getLongestStreak, getStreakFreezes } from "@/db/queries";
 import { FeedWrapper } from "@/components/feed-wrapper";
 import { UserProgress } from "@/components/user-progress";
 import { StickyWrapper } from "@/components/sticky-wrapper";
@@ -9,11 +9,12 @@ import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Promo } from "@/components/promo";
 import { Quests } from "@/components/quests";
+import Link from "next/link";
 
 const LeaderboardPage = async () => {
     const userProgressData = getUserProgress();
     const userSubscriptionData = getUserSubscription();
-    const leaderboardData = getTopTenUsers();
+    const leaderboardData = getTopUsers();
     const userStreak = getUserStreak();
     const longestStreak = getLongestStreak();
     const freezesAvailable = getStreakFreezes();
@@ -73,26 +74,32 @@ const LeaderboardPage = async () => {
                     </p>
                     <Separator className="mb-4 h-0.5 rounded-full" />
                     {leaderboard.map((userProgress, index) => ( // => ( is an IMMEDIATE RETURN
-                        <div 
+                        <Link
                             key={userProgress.userId}
-                            className="flex items-center w-full p-2 px-4 rounded-xl hover:bg-grey-200/50"
+                            href={`/profile/${userProgress.userId}`}
+                            className="w-full group"
                         >
-                            <p className="font-bold text-line-700 mr-4">{index + 1}</p>
-                            <Avatar
-                                className="border bg-green-500 h-12 w-12 ml-3 mr-6"
+                            <div 
+                                key={userProgress.userId}
+                                className="flex items-center w-full p-2 px-4 rounded-xl transition-all duration-200 group-hover:bg-muted/50 group-hover:scale-[1.01]"
                             >
-                                <AvatarImage 
-                                    className="object-cover"
-                                    src={userProgress.userImageSrc}
-                                />
-                            </Avatar>
-                            <p className="font-bold text-neutral-800 flex-1">
-                                {userProgress.userName}
-                            </p>
-                            <p className="text-muted-foreground">
-                                {userProgress.points} XP
-                            </p>
-                        </div>   
+                                <p className="font-bold text-line-700 mr-4">{index + 1}</p>
+                                <Avatar
+                                    className="border bg-green-500 h-12 w-12 ml-3 mr-6"
+                                >
+                                    <AvatarImage 
+                                        className="object-cover"
+                                        src={userProgress.userImageSrc}
+                                    />
+                                </Avatar>
+                                <p className="font-bold text-neutral-800 flex-1">
+                                    {userProgress.userName}
+                                </p>
+                                <p className="text-muted-foreground">
+                                    {userProgress.points} XP
+                                </p>
+                            </div>
+                        </Link>   
                     ))}
                 </div>
             </FeedWrapper>
