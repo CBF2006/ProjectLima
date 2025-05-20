@@ -29,7 +29,9 @@ export const UserProgress = ({
  }: Props) => {
     return (
         <div className="flex items-center justify-between gap-x-2 w-full">
-            <Link href="/courses">
+            {/* <Link href="/courses"> */}
+            <Popover>
+                <PopoverTrigger>
                 <Button variant="ghost">
                     <Image 
                         src={activeCourse.imageSrc}
@@ -39,7 +41,14 @@ export const UserProgress = ({
                         height={32}
                     />
                 </Button>
-            </Link>
+                </PopoverTrigger>
+                <PopoverContent className="w-64">
+                    <div>
+                        Helloooooo
+                    </div>
+                </PopoverContent>
+            </Popover>
+            {/* </Link> */}
             <Popover>
                 <PopoverTrigger asChild>
                     <Button 
