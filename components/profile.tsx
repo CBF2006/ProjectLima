@@ -2,13 +2,26 @@
 
 import { Button } from "@/components/ui/button";
 import { useUser } from "@clerk/nextjs";
+import { Loader } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const Profile = () => {
   const { isLoaded, isSignedIn, user } = useUser();
+  const router = useRouter();
 
-  if (!isLoaded) return <div>Loading...</div>;
-  if (!isSignedIn || !user) return <div>Please sign in to view your profile.</div>;
+  useEffect(() => {
+    if (isLoaded && (!isSignedIn || !user)) {
+      router.push("/");
+    }
+  }, [isLoaded, isSignedIn, user, router]);
+
+  if (!isLoaded) return <Loader className="animate-spin w-5 h-5 text-muted-foreground" />;
+
+  if (!isSignedIn || !user) {
+    return null;
+  }
 
   return (
     <div className="border-2 rounded-xl p-4 space-y-4 max-w-md mx-auto">
