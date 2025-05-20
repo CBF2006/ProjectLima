@@ -222,7 +222,9 @@ export const Quiz = ({
             )}
 
             <div>
-              {challenge.type === "ASSIST" && <QuestionBubble question={challenge.question} />}
+              {(challenge.type === "ASSIST" || challenge.type === "TRANSLATE") && (
+                <QuestionBubble question={challenge.question} />
+              )}
               <Challenge
                 options={options}
                 onSelect={onSelect}
