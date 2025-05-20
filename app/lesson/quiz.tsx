@@ -79,6 +79,8 @@ export const Quiz = ({
   const [status, setStatus] = useState<"correct" | "wrong" | "none">("none");
   const [streakLogged, setStreakLogged] = useState(false);
 
+  const [matchChallengeResetKey, setMatchChallengeResetKey] = useState(0);
+
   const challenge = challenges[activeIndex];
   const options = challenge?.challengeOptions ?? [];
 

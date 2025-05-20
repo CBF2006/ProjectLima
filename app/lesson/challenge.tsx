@@ -49,6 +49,7 @@ export const Challenge = ({
         setWrongIds({ promptId: null, responseId: null });
         setCardsDisabled(false);
         setHadIncorrectAttempt(false);
+        setSelectedPromptId(null);
       }
     }, [status]);
 
