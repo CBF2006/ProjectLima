@@ -81,9 +81,11 @@ export const Quiz = ({
 
   const [matchChallengeResetKey, setMatchChallengeResetKey] = useState(0);
 
+  const [filledText, setFilledText] = useState<string | null>(null);
+
   const challenge = challenges[activeIndex];
   const options = challenge?.challengeOptions ?? [];
-
+  
   useEffect(() => {
     if (!challenge && typeof userId === "string" && !streakLogged) {
       updateLessonStreak(userId, type);
@@ -99,6 +101,7 @@ export const Quiz = ({
         .then((response) => {
           if (response?.error === "hearts") return openHeartsModal();
           correctControls.play();
+          setFilledText(selectedOptionText ?? null);
           setStatus("correct");
           setPercentage((prev) => prev + 100 / challenges.length);
           if (initialPercentage === 100) {
@@ -140,6 +143,7 @@ export const Quiz = ({
 
   const onContinue = () => {
     if (status === "correct") {
+      setFilledText(null);
       setStatus("none");
       setSelectedOption(undefined);
       onNext();
@@ -179,6 +183,11 @@ export const Quiz = ({
     );
   }
 
+  const selectedOptionText =
+  selectedOption !== undefined
+    ? options.find((opt) => opt.id === selectedOption)?.text
+    : null;
+
   const title =
     challenge.type === "ASSIST"
       ? "Select the correct meaning"
@@ -188,6 +197,8 @@ export const Quiz = ({
       ? "Match the words"
       : challenge.type === "TRANSLATE"
       ? "Select the correct translation"
+      : challenge.type === "FILL"
+      ? "Fill in the blank"
       : challenge.question;
 
   return (
@@ -222,8 +233,11 @@ export const Quiz = ({
             )}
 
             <div>
-              {(challenge.type === "ASSIST" || challenge.type === "TRANSLATE") && (
-                <QuestionBubble question={challenge.question} />
+              {(challenge.type === "ASSIST" || challenge.type === "TRANSLATE" || challenge.type === "FILL") && (
+                <QuestionBubble
+                 question={challenge.question} 
+                 fillText={filledText}
+                 />
               )}
               <Challenge
                 options={options}
